@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://cyknq0qlcsd7s" path="res://scripts/playercharacter/movement.gd" id="1_s0dnl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5508y"]
+radius = 128.0
+height = 256.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s0dnl"]
 
 [node name="RigidBody2D" type="RigidBody2D" unique_id=986975261]
 gravity_scale = 0.0
@@ -13,4 +17,5 @@ script = ExtResource("1_s0dnl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=497899030]
 shape = SubResource("CapsuleShape2D_5508y")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1644182503]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1505697487]
+mesh = SubResource("CapsuleMesh_s0dnl")
