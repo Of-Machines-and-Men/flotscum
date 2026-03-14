@@ -36,13 +36,15 @@ func _get_viewport_rect_world(camera: Camera2D) -> Rect2:
 	
 func _random_outside_rect(rect: Rect2) -> Vector2:
 	var side = randi() % 4
+	var random_x_offset = randf_range(rect.position.x, rect.end.x)
+	var random_y_offset = randf_range(rect.position.y, rect.end.y)
 	match side:
 		0: #top
-			return Vector2(randf_range(rect.position.x, rect.end.x), rect.position.y - spawn_margin)
+			return Vector2(random_x_offset, rect.position.y - spawn_margin)
 		1: #bottom
-			return Vector2(randf_range(rect.position.x, rect.end.x), rect.end.y + spawn_margin)
+			return Vector2(random_x_offset, rect.end.y + spawn_margin)
 		2: #left
-			return Vector2(rect.position.x - spawn_margin, randf_range(rect.position.y, rect.end.y))
+			return Vector2(rect.position.x - spawn_margin, random_y_offset)
 		3: #right
-			return Vector2(rect.end.x + spawn_margin, randf_range(rect.position.y, rect.end.y))
+			return Vector2(rect.end.x + spawn_margin, random_y_offset)
 	return Vector2.ZERO
