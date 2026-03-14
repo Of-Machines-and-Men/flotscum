@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cbny8qdd0ylhb"]
+
+[ext_resource type="Script" uid="uid://cvoit73i6hn7e" path="res://scenes/entities/collectible/collectible.gd" id="1_xsriq"]
+
+[node name="Collectible" type="RigidBody2D" unique_id=107382803]
+script = ExtResource("1_xsriq")
+metadata/_custom_type_script = "uid://cdx4j041nqp46"
