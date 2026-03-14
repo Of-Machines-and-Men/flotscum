@@ -9,6 +9,7 @@ var _drift_direction: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super._ready()
 	_randomise_drift()
 	
 func _physics_process(delta: float) -> void:

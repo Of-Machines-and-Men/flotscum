@@ -5,6 +5,7 @@ var is_attached: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group("entities")
 	pass # Replace with function body.
 
 func on_absorbed(absorber: Node) -> void:
