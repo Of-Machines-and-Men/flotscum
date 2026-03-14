@@ -12,15 +12,25 @@ grow_vertical = 2
 script = ExtResource("1_xnd6m")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1798652032]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.008
+anchor_right = 0.008
+offset_left = 490.784
+offset_top = 250.0
+offset_right = 582.784
+offset_bottom = 297.0
+alignment = 1
 
 [node name="Game Over" type="Label" parent="VBoxContainer" unique_id=219259007]
 layout_mode = 2
+text = "GAME OVER"
+horizontal_alignment = 1
 
 [node name="RetryButton" type="Button" parent="VBoxContainer" unique_id=1015939111]
 layout_mode = 2
+text = "RETRY"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer" unique_id=1194243604]
 layout_mode = 2
+text = "MAIN MENU"
