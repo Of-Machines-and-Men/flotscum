@@ -1,7 +1,21 @@
 [gd_scene format=3 uid="uid://ol8irxl6lelf"]
 
-[node name="PlayerCharacter" type="Node2D" unique_id=317693072]
+[ext_resource type="Script" uid="uid://cyknq0qlcsd7s" path="res://scripts/playercharacter/movement.gd" id="1_s0dnl"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=754591752]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5508y"]
+radius = 128.0
+height = 256.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D" unique_id=505060456]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s0dnl"]
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=986975261]
+gravity_scale = 0.0
+linear_damp = 2.5
+angular_damp = 2.5
+script = ExtResource("1_s0dnl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=497899030]
+shape = SubResource("CapsuleShape2D_5508y")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1505697487]
+mesh = SubResource("CapsuleMesh_s0dnl")
