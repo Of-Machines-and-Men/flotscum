@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://fegfnwhatpdg"]
 
 [ext_resource type="Script" uid="uid://bxenrbo7n42b5" path="res://scenes/entities/collectible/structural/structural_collectible.gd" id="1_3xq35"]
-[ext_resource type="Texture2D" uid="uid://bme8uxls7c3tu" path="res://scenes/entities/collectible/structural/collectible_good.png" id="2_um8dw"]
+[ext_resource type="Texture2D" uid="uid://dmy7v4d3g3w6a" path="res://assets/placeholders/collectible_good.png" id="2_um8dw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_um8dw"]
+radius = 16.0
 
 [node name="StructuralCollectible" type="RigidBody2D" unique_id=262448205]
 script = ExtResource("1_3xq35")
