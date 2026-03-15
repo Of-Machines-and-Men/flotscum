@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dd3ahydw2vtl5"]
+
+[ext_resource type="Script" uid="uid://c5xal78iqog4n" path="res://scenes/entities/enemy/rammer/rammer.gd" id="1_k3n7j"]
+[ext_resource type="Texture2D" uid="uid://d4mpv5ql3gcvk" path="res://assets/placeholders/collectible_bad.png" id="2_0nyfv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1b0dm"]
+radius = 16.0
+
+[node name="Rammer" type="RigidBody2D" unique_id=2645434]
+script = ExtResource("1_k3n7j")
+metadata/_custom_type_script = "uid://b80r5gviyuvkm"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1627163847]
+texture = ExtResource("2_0nyfv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1521781837]
+shape = SubResource("CircleShape2D_1b0dm")
