@@ -56,8 +56,8 @@ void fragment() {
 	    texture(noise_texture, UV * 0.5 + TIME * 0.02).r,
 	    texture(noise_texture, UV * 0.5 + TIME * 0.02 + vec2(0.4)).r
 	) * 2.0 - 1.0;
-	vec2 foam_uv_a = (UV + foam_warp * 0.15) * foam_scale + current_a * TIME * 0.5 * speed_a;
-	vec2 foam_uv_b = (UV + foam_warp * 0.15) * foam_scale + current_b * TIME * 0.5 * speed_b;
+	vec2 foam_uv_a = (UV + foam_warp * 0.15) * foam_scale + current_a * TIME * 0.1 * speed_a;
+	vec2 foam_uv_b = (UV + foam_warp * 0.15) * foam_scale + current_b * TIME * 0.1 * speed_b;
 	
 	float foam_a = texture(foam_noise_texture, foam_uv_a).r;
 	float foam_b = texture(foam_noise_texture, foam_uv_b).r;
