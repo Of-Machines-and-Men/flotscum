@@ -1,3 +1,4 @@
+class_name Entity
 extends RigidBody2D
 
 @export var thrust_force: float = 2000.0
