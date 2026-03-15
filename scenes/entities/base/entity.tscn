@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bmbon5ltbg7hn"]
+
+[ext_resource type="Script" uid="uid://cdx4j041nqp46" path="res://scenes/entities/base/entity.gd" id="1_wcjeu"]
+
+[node name="Entity" type="RigidBody2D" unique_id=464333206]
+script = ExtResource("1_wcjeu")

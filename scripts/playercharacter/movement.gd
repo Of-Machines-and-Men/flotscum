@@ -11,7 +11,7 @@ func get_mouse_orientation():
 	var mouse_pos = get_global_mouse_position()
 	return (mouse_pos - global_position).normalized()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = get_mouse_orientation()
 	
 	# Rotate to face mouse (visual only, instant... Might want to add a delay?))
