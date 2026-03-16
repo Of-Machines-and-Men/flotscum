@@ -6,12 +6,24 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_um8dw"]
 radius = 16.0
 
-[node name="StructuralCollectible" type="RigidBody2D" unique_id=262448205]
+[sub_resource type="CircleShape2D" id="CircleShape2D_k8dyh"]
+radius = 16.0
+
+[node name="StructuralCollectible" type="RigidBody2D" unique_id=262448205 node_paths=PackedStringArray("entity_sprite", "collider", "impact_zone", "impact_collider")]
 script = ExtResource("1_3xq35")
+entity_sprite = NodePath("Sprite2D")
+collider = NodePath("Collider")
+impact_zone = NodePath("ImpactZone")
+impact_collider = NodePath("ImpactZone/ImpactCollider")
 metadata/_custom_type_script = "uid://cvoit73i6hn7e"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1582658112]
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1582658112]
 shape = SubResource("CircleShape2D_um8dw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=467209328]
 texture = ExtResource("2_um8dw")
+
+[node name="ImpactZone" type="Area2D" parent="." unique_id=839184260]
+
+[node name="ImpactCollider" type="CollisionShape2D" parent="ImpactZone" unique_id=1151902737]
+shape = SubResource("CircleShape2D_k8dyh")
