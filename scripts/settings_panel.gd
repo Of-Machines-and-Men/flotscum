@@ -1,7 +1,7 @@
 extends Panel
 
 @onready var master_slider: HSlider = $VBoxContainer/HBoxContainer/MasterSlider
-@onready var fullscreen_toggle: CheckButton = $VBoxContainer/HBoxContainer2/FullscreenToggle
+@onready var fullscreen_toggle: CheckBox = $VBoxContainer/HBoxContainer2/FullscreenToggle
 
 func _ready() -> void:
 	# Restore saved settings if they exist
