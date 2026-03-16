@@ -30,16 +30,10 @@ func _apply_current_force() -> void:
 	apply_central_force(current_direction * current_strength * current_influence)
 	
 func _get_ocean_current_direction() -> Vector2:
-	if Engine.has_singleton("OceanCurrentManager"):
-		return OceanCurrentManager.get_current_direction_at_location(global_position)
-	else:
-		return Vector2(0.0, 0.0).normalized()
+	return OceanCurrentManager.get_current_direction_at_location(global_position)
 
 func _get_ocean_current_strength() -> float:
-	if Engine.has_singleton("OceanCurrentManager"):
-		return OceanCurrentManager.get_current_strength_at_location(global_position)
-	else:
-		return 0.0
+	return OceanCurrentManager.get_current_strength_at_location(global_position)
 
 func _on_absorption_zone_overlap(overlapped: Node) -> void:
 	if not impact_zone or overlapped == self:

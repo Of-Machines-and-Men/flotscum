@@ -2,7 +2,5 @@
 
 [ext_resource type="Script" uid="uid://cdx4j041nqp46" path="res://scenes/entities/base/entity.gd" id="1_wcjeu"]
 
-[node name="Entity" type="RigidBody2D" unique_id=464333206 node_paths=PackedStringArray("entity_sprite", "collider")]
+[node name="Entity" type="RigidBody2D" unique_id=464333206]
 script = ExtResource("1_wcjeu")
-entity_sprite = NodePath("")
-collider = NodePath("")
