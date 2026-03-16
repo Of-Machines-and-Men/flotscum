@@ -14,7 +14,8 @@ func _ready() -> void:
 	super._ready()
 	find_target()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
 	if is_attached:
 		return
 	if not _target:
