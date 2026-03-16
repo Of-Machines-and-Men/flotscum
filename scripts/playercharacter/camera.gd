@@ -1,10 +1,10 @@
 extends Camera2D
 
 @export var target: NodePath
-@export var box_size: Vector2 = Vector2(200, 150) # Deadzone
-@export var min_speed: float = 50.0
-@export var max_speed: float = 600.0
-@export var speed_ramp: float = 3.0 # speed co-efficient
+@export var box_size: Vector2 = Vector2(150, 100) # Deadzone
+@export var min_speed: float = 250.0
+@export var max_speed: float = 1000.0
+@export var speed_ramp: float = 7.0 # speed co-efficient
 
 var _target_node: RigidBody2D
 

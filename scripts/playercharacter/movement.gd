@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@export var thrust_force: float = 2000.0
+@export var thrust_force: float = 1000.0
 
 func _ready():
 	gravity_scale = 0.0
