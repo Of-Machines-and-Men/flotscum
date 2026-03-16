@@ -15,6 +15,11 @@ run/main_scene="uid://bu0l7lx6otexd"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+OceanCurrentManager="*uid://bguiqbwwi2c5b"
+EntityAttachmentManager="*uid://cr8gvyh1janjf"
+
 [input]
 
 moveup={

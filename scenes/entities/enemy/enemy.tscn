@@ -4,4 +4,6 @@
 
 [node name="Enemy" type="RigidBody2D" unique_id=1115726226]
 script = ExtResource("1_lw7nh")
+absorber_priority = 1
+can_be_absorbed = false
 metadata/_custom_type_script = "uid://cdx4j041nqp46"
