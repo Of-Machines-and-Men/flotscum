@@ -6,8 +6,18 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hmtu"]
 radius = 30.0
 
-[node name="Player" type="RigidBody2D" unique_id=1684059445]
+[sub_resource type="CircleShape2D" id="CircleShape2D_635qg"]
+radius = 32.0
+
+[node name="Player" type="RigidBody2D" unique_id=1684059445 node_paths=PackedStringArray("entity_sprite", "collider", "impact_zone", "impact_collider")]
+linear_damp = 1.0
 script = ExtResource("1_1hmtu")
+entity_sprite = NodePath("Sprite2D")
+collider = NodePath("CollisionShape2D")
+impact_zone = NodePath("ImpactZone")
+impact_collider = NodePath("ImpactZone/ImpactCollider")
+absorber_priority = 2
+can_be_absorbed = false
 metadata/_custom_type_script = "uid://cdx4j041nqp46"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=80675551]
@@ -15,3 +25,8 @@ texture = ExtResource("2_635qg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=837677379]
 shape = SubResource("CircleShape2D_1hmtu")
+
+[node name="ImpactZone" type="Area2D" parent="." unique_id=127467250]
+
+[node name="ImpactCollider" type="CollisionShape2D" parent="ImpactZone" unique_id=65333504]
+shape = SubResource("CircleShape2D_635qg")
