@@ -4,3 +4,5 @@
 
 [node name="Entity" type="RigidBody2D" unique_id=464333206]
 script = ExtResource("1_wcjeu")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=398416503]

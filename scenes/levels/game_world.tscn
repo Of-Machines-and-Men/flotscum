@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://8u3ts410dhvl" path="res://scenes/levels/ocean_background.gd" id="2_hyc8p"]
 [ext_resource type="Script" uid="uid://c8mpy6wdtltu7" path="res://scenes/entities/spawners/spawner.gd" id="2_w0s2s"]
 [ext_resource type="PackedScene" uid="uid://fegfnwhatpdg" path="res://scenes/entities/collectible/structural/StructuralCollectible.tscn" id="3_4r7d4"]
+[ext_resource type="PackedScene" uid="uid://bx50wswt2uvmn" path="res://scenes/entities/player/player.tscn" id="6_75bvq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_75bvq"]
 noise_type = 2
@@ -98,3 +99,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_hyc8p")
+
+[node name="Player" parent="." unique_id=1684059445 instance=ExtResource("6_75bvq")]

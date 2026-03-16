@@ -1,7 +1,17 @@
 [gd_scene format=3 uid="uid://bx50wswt2uvmn"]
 
-[ext_resource type="Script" uid="uid://cdx4j041nqp46" path="res://scenes/entities/base/entity.gd" id="1_1hmtu"]
+[ext_resource type="Script" uid="uid://ddo6cyibuwjad" path="res://scenes/entities/player/player.gd" id="1_1hmtu"]
+[ext_resource type="Texture2D" uid="uid://dhf0qh6fxyjrj" path="res://assets/placeholders/player.png" id="2_635qg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hmtu"]
+radius = 30.0
 
 [node name="Player" type="RigidBody2D" unique_id=1684059445]
 script = ExtResource("1_1hmtu")
 metadata/_custom_type_script = "uid://cdx4j041nqp46"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=80675551]
+texture = ExtResource("2_635qg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=837677379]
+shape = SubResource("CircleShape2D_1hmtu")
