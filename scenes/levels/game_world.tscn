@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://bu0l7lx6otexd"]
 
 [ext_resource type="Shader" uid="uid://bi28g0yfik0rs" path="res://shaders/ocean.gdshader" id="1_7y55x"]
+
+[ext_resource type="PackedScene" uid="uid://ol8irxl6lelf" path="res://scenes/characters/player/player_character.tscn" id="1_upt1h"]
+[ext_resource type="Script" uid="uid://ouijb0pf6arq" path="res://scripts/playercharacter/camera.gd" id="2_75bvq"]
+
 [ext_resource type="Script" uid="uid://8u3ts410dhvl" path="res://scenes/levels/ocean_background.gd" id="2_hyc8p"]
 [ext_resource type="Script" uid="uid://c8mpy6wdtltu7" path="res://scenes/entities/spawners/spawner.gd" id="2_w0s2s"]
 [ext_resource type="PackedScene" uid="uid://fegfnwhatpdg" path="res://scenes/entities/collectible/structural/StructuralCollectible.tscn" id="3_4r7d4"]
@@ -76,6 +80,8 @@ shader_parameter/foam_color = Color(0.9, 0.95, 1, 1)
 [node name="Game World" type="Node2D" unique_id=1526779244]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1591346675]
+script = ExtResource("2_75bvq")
+target = NodePath("../RigidBody2D")
 
 [node name="Entities" type="Node2D" parent="." unique_id=2140729309]
 
