@@ -81,8 +81,6 @@ shader_parameter/foam_color = Color(0.9, 0.95, 1, 1)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1591346675]
 script = ExtResource("2_75bvq")
 target = NodePath("../RigidBody2D")
-box_size = Vector2(100, 50)
-speed_ramp = 10.0
 
 [node name="Entities" type="Node2D" parent="." unique_id=2140729309]
 
