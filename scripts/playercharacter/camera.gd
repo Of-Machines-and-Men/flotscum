@@ -1,7 +1,7 @@
 extends Camera2D
 
 @export var target: NodePath
-@export var box_size: Vector2 = Vector2(150, 100) # Deadzone
+@export var deadzone: float = 150.0
 @export var min_speed: float = 250.0
 @export var max_speed: float = 1000.0
 @export var speed_ramp: float = 7.0 # speed co-efficient
@@ -18,17 +18,11 @@ func _physics_process(delta):
 		return
 	
 	var target_pos = _target_node.global_position
-	var cam_pos = global_position
-	var offset = target_pos - cam_pos
+	var distance = global_position.distance_to(target_pos)
+	var outside = distance - deadzone
 	
 	# Check how far outside the box the player is
-	var outside = Vector2.ZERO
-	if abs(offset.x) > box_size.x:
-		outside.x = offset.x - sign(offset.x) * box_size.x
-	if abs(offset.y) > box_size.y:
-		outside.y = offset.y - sign(offset.y) * box_size.y
-	
-	# Move faster the further outside the box the player is
-	if outside.length() > 0:
-		var speed = clamp(outside.length() * speed_ramp, min_speed, max_speed)
-		global_position += outside.normalized() * speed * delta
+	if outside > 0:
+		var direction = (target_pos - global_position).normalized()
+		var speed = clamp(outside * speed_ramp, min_speed, max_speed)
+		global_position += direction * speed * delta
