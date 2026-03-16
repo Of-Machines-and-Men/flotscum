@@ -5,10 +5,10 @@ shader_type canvas_item;
 uniform vec2 wind_dir = vec2(0.5, 0.8);
 uniform float wind_speed : hint_range(0.0, 5.0) = 1.2;
 
-uniform vec2 current_a_dir = vec2(1.0, 0.3);
-uniform vec2 current_b_dir = vec2(-0.3, 1.0);
-uniform float current_a_speed : hint_range(0.0, 5.0) = 0.1;
-uniform float current_b_speed : hint_range(0.0, 5.0) = 0.5;
+uniform vec2 current_a_dir = vec2(0.7, 0.3);
+uniform vec2 current_b_dir = vec2(-0.3, 0.7);
+uniform float current_a_speed : hint_range(0.0, 5.0) = 0.2;
+uniform float current_b_speed : hint_range(0.0, 5.0) = 0.1;
 uniform float current_a_frequency : hint_range(0.0, 2.0) = 0.2;
 uniform float current_b_frequency : hint_range(0.0, 2.0) = 0.15;
 
@@ -20,7 +20,7 @@ uniform vec4 deep_color_b : source_color = vec4(0.0, 0.6, 0.5, 1.0);
 
 // Waves
 uniform sampler2D wave_noise_texture : repeat_enable;
-uniform float wave_scale : hint_range(0.0, 5.0) = 1.5;
+uniform float wave_scale : hint_range(0.0, 5.0) = 1.0;
 uniform float wave_strength : hint_range(0.0, 1) = 0.5;
 uniform vec4 wave_crest_color : source_color = vec4(0.3, 0.75, 0.9, 1.0);
 
