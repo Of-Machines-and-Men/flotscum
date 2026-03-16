@@ -13,6 +13,7 @@ func _ready() -> void:
 	_randomise_drift()
 	
 func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
 	if is_attached:
 		return
 	_drift_timer -= delta
