@@ -111,3 +111,5 @@ layout_mode = 2
 
 [node name="Button" type="Button" parent="CreditsPanel/VBoxContainer" unique_id=2081371552]
 layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

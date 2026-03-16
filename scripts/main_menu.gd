@@ -10,7 +10,7 @@ func _ready() -> void:
 # --- Button callbacks ---
 
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_world.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/game_world.tscn")
 
 func _on_settings_button_pressed() -> void:
 	credits_panel.hide()
