@@ -30,3 +30,9 @@ shape = SubResource("CircleShape2D_1hmtu")
 
 [node name="ImpactCollider" type="CollisionShape2D" parent="ImpactZone" unique_id=65333504]
 shape = SubResource("CircleShape2D_635qg")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1279723923]
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
