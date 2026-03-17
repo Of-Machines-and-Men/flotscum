@@ -182,6 +182,7 @@ uppercase = true
 layout_mode = 2
 
 [node name="Close" type="Button" parent="CreditsPanel/VBoxContainer" unique_id=2081371552]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
 text = "CLOSE"
@@ -190,5 +191,6 @@ text = "CLOSE"
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="toggled" from="SettingsPanel/VBoxContainer/HBoxContainer2/FullscreenToggle" to="SettingsPanel" method="_on_fullscreen_toggle_toggled"]
 [connection signal="pressed" from="SettingsPanel/VBoxContainer/Close" to="SettingsPanel" method="_on_close_button_pressed"]
-[connection signal="pressed" from="CreditsPanel/VBoxContainer/Close" to="CreditsPanel" method="_on_button_pressed"]
+[connection signal="pressed" from="CreditsPanel/VBoxContainer/Close" to="CreditsPanel" method="_on_close_button_pressed"]
