@@ -16,6 +16,6 @@ func _on_fullscreen_toggle_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
+		
 func _on_close_button_pressed() -> void:
-	hide()
+	hide()  # or whatever node the panel actually is

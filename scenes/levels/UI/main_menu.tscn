@@ -4,64 +4,63 @@
 [ext_resource type="Script" uid="uid://bvxga6jtlm7kd" path="res://scripts/settings_panel.gd" id="2_dijy4"]
 [ext_resource type="Texture2D" uid="uid://chdix6dtkf4px" path="res://assets/LOGO/FLOTSCUM ALTERED1.svg" id="2_gq817"]
 [ext_resource type="FontFile" uid="uid://befhsw8dexkeu" path="res://assets/fonts/Barriecito-Regular.ttf" id="3_gq817"]
+[ext_resource type="Script" uid="uid://182ltpuus8xv" path="res://scripts/credits_panel.gd" id="5_2vng5"]
 
 [node name="MainMenu" type="Control" unique_id=85937168]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -76.0
-offset_top = -60.0
-offset_right = -80.0
-offset_bottom = -63.0
+offset_left = 7.0
+offset_top = 1.0
+offset_right = 3.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_telv4")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=827730808]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.074
-anchor_top = 0.102000006
-anchor_right = 1.069
-anchor_bottom = 1.1010001
-offset_left = 48.047997
-offset_top = -96.79
-offset_right = -94.212036
-offset_bottom = 8.85498
-texture = ExtResource("2_gq817")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1788951075]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.071
-anchor_top = 0.1
-anchor_right = 1.07
-anchor_bottom = 1.098
-offset_left = 83.492
-offset_top = 126.5
-offset_right = -63.360107
-offset_bottom = 372.78998
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -125.0
+offset_right = -5.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_constants/separation = 4
 alignment = 1
 
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=827730808]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+texture = ExtResource("2_gq817")
+stretch_mode = 5
+
 [node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=2146290763]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
 text = "PLAY"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=69847764]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
 text = "SETTINGS
 "
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer" unique_id=270886808]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
 text = "CREDITS"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=640120204]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
 text = "QUIT"
@@ -74,63 +73,82 @@ offset_right = 626.0
 offset_bottom = 286.0
 
 [node name="SettingsPanel" type="Panel" parent="." unique_id=1441355357]
+custom_minimum_size = Vector2(400, 300)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.57900006
 anchor_bottom = 0.786
-offset_right = -90.69208
-offset_bottom = -184.47
+offset_left = -233.0
+offset_top = -236.5
+offset_right = 115.635864
+offset_bottom = -244.52203
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_dijy4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel" unique_id=1588699464]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
 
 [node name="Settings" type="Label" parent="SettingsPanel/VBoxContainer" unique_id=1685888888]
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
 text = "SETTINGS"
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/VBoxContainer" unique_id=1357258822]
 layout_mode = 2
 
 [node name="Master Volume" type="Label" parent="SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1048891311]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 text = "MASTER VOLUME"
+vertical_alignment = 1
 
 [node name="MasterSlider" type="HSlider" parent="SettingsPanel/VBoxContainer/HBoxContainer" unique_id=265931733]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="SettingsPanel/VBoxContainer" unique_id=790187730]
 layout_mode = 2
 
 [node name="Fullscreen" type="Label" parent="SettingsPanel/VBoxContainer/HBoxContainer2" unique_id=1355665060]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 text = "FULLSCREEN"
+vertical_alignment = 1
 
 [node name="FullscreenToggle" type="CheckBox" parent="SettingsPanel/VBoxContainer/HBoxContainer2" unique_id=1135324011]
 layout_mode = 2
 
 [node name="Close" type="Button" parent="SettingsPanel/VBoxContainer" unique_id=550763309]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
 text = "CLOSE"
 
 [node name="CreditsPanel" type="Panel" parent="." unique_id=1536161122]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.069000006
 anchor_top = 0.098000005
 anchor_right = 1.0710001
 anchor_bottom = 1.0940001
-offset_left = -79.212006
-offset_top = -63.210003
-offset_right = -1189.508
-offset_bottom = -665.63007
+offset_left = 309.796
+offset_top = 23.453995
+offset_right = -575.03613
+offset_bottom = -405.96606
+script = ExtResource("5_2vng5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CreditsPanel" unique_id=1363506844]
 layout_mode = 1
@@ -139,26 +157,31 @@ anchor_left = 1.9770001
 anchor_top = 1.5370001
 anchor_right = 30.615002
 anchor_bottom = 17.718
-offset_left = 216.92
-offset_top = 157.51999
-offset_right = -150.6001
-offset_bottom = -154.72003
+offset_left = -1815.1951
+offset_top = -803.7092
+offset_right = -30889.527
+offset_bottom = -10926.495
 
 [node name="Credits" type="Label" parent="CreditsPanel/VBoxContainer" unique_id=697197093]
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
 text = "CREDITS"
+horizontal_alignment = 1
 
 [node name="Individuals" type="Label" parent="CreditsPanel/VBoxContainer" unique_id=616682545]
+custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
-text = "Programmers: Matthew Holmes.
-Fiachna Carter
+text = "Programmers: Matthew Holmes & Fiachna Carter
 Artist: April Banner
-Sound Designer Rogue Roane"
+Sound Designer: Rogue Roane"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="Built ON" type="Label" parent="CreditsPanel/VBoxContainer" unique_id=593749257]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CreditsPanel/VBoxContainer" unique_id=2081371552]
+[node name="Close" type="Button" parent="CreditsPanel/VBoxContainer" unique_id=2081371552]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
 text = "CLOSE"
@@ -167,3 +190,5 @@ text = "CLOSE"
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="SettingsPanel/VBoxContainer/Close" to="SettingsPanel" method="_on_close_button_pressed"]
+[connection signal="pressed" from="CreditsPanel/VBoxContainer/Close" to="CreditsPanel" method="_on_button_pressed"]

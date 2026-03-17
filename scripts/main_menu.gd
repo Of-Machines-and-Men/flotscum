@@ -22,3 +22,11 @@ func _on_credits_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_close_pressed():
+	pass # Replace with function body.
+
+
+func _on_button_pressed():
+	pass # Replace with function body.
