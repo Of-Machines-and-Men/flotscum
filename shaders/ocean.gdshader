@@ -33,9 +33,9 @@ uniform vec4 wave_crest_color : source_color = vec4(0.3, 0.75, 0.9, 1.0);
 
 // Foam
 uniform float foam_parallax_multiplier : hint_range(0.0, 1.0) = 1.0;
-uniform float foam_scale : hint_range(1.0, 50.0) = 10.0;
+uniform float foam_scale : hint_range(1.0, 50.0) = 1.5;
 uniform float foam_noise_scale : hint_range(0.1, 5.0) = 2.0;
-uniform float foam_threshold : hint_range(0.0, 1.0) = 0.5;
+uniform float foam_threshold : hint_range(0.0, 1.0) = 0.65;
 uniform float foam_strength : hint_range(0.0, 1.0) = 0.8;
 uniform vec4 foam_color : source_color = vec4(0.9, 0.95, 1.0, 1.0);
 
