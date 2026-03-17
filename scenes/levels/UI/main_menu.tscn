@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cse0sipir4nhv" path="res://scripts/main_menu.gd" id="1_telv4"]
 [ext_resource type="Script" uid="uid://bvxga6jtlm7kd" path="res://scripts/settings_panel.gd" id="2_dijy4"]
 [ext_resource type="Texture2D" uid="uid://chdix6dtkf4px" path="res://assets/LOGO/FLOTSCUM ALTERED1.svg" id="2_gq817"]
+[ext_resource type="FontFile" uid="uid://befhsw8dexkeu" path="res://assets/fonts/Barriecito-Regular.ttf" id="3_gq817"]
 
 [node name="MainMenu" type="Control" unique_id=85937168]
 layout_mode = 3
@@ -46,19 +47,23 @@ alignment = 1
 
 [node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=2146290763]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gq817")
 text = "PLAY"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=69847764]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gq817")
 text = "SETTINGS
 "
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer" unique_id=270886808]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gq817")
 text = "CREDITS"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=640120204]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gq817")
 text = "QUIT"
 
 [node name="Background" type="TextureRect" parent="." unique_id=1355185762]
@@ -112,6 +117,8 @@ layout_mode = 2
 
 [node name="Close" type="Button" parent="SettingsPanel/VBoxContainer" unique_id=550763309]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gq817")
+text = "CLOSE"
 
 [node name="CreditsPanel" type="Panel" parent="." unique_id=1536161122]
 layout_mode = 1
@@ -153,6 +160,7 @@ layout_mode = 2
 
 [node name="Button" type="Button" parent="CreditsPanel/VBoxContainer" unique_id=2081371552]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gq817")
 text = "CLOSE"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
