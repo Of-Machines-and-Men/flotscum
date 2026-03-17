@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bu0l7lx6otexd"]
 
 [ext_resource type="Shader" uid="uid://bi28g0yfik0rs" path="res://shaders/ocean.gdshader" id="1_7y55x"]
-[ext_resource type="Script" uid="uid://ouijb0pf6arq" path="res://scripts/playercharacter/camera.gd" id="2_75bvq"]
 [ext_resource type="Script" uid="uid://8u3ts410dhvl" path="res://scenes/levels/ocean_background.gd" id="2_hyc8p"]
 [ext_resource type="Script" uid="uid://c8mpy6wdtltu7" path="res://scenes/entities/spawners/spawner.gd" id="2_w0s2s"]
 [ext_resource type="PackedScene" uid="uid://fegfnwhatpdg" path="res://scenes/entities/collectible/structural/StructuralCollectible.tscn" id="3_4r7d4"]
@@ -9,42 +8,45 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_75bvq"]
 noise_type = 2
-frequency = 0.005
-fractal_octaves = 6
-fractal_lacunarity = 2.3
+fractal_gain = 0.7
 fractal_weighted_strength = 0.75
 cellular_distance_function = 3
-cellular_return_type = 0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b3nq0"]
-width = 1024
-height = 1024
+width = 256
+height = 256
 noise = SubResource("FastNoiseLite_75bvq")
 seamless = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7y55x"]
-frequency = 0.003
-fractal_octaves = 6
-fractal_lacunarity = 2.3
+noise_type = 3
+frequency = 0.0035
+fractal_octaves = 3
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hyc8p"]
-width = 1024
-height = 1024
+width = 128
+height = 128
 generate_mipmaps = false
 noise = SubResource("FastNoiseLite_7y55x")
 seamless = true
 seamless_blend_skirt = 0.5
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_b3nq0"]
-frequency = 0.008
-fractal_octaves = 6
-fractal_lacunarity = 2.3
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hyc8p"]
+noise_type = 3
+frequency = 0.005
+fractal_type = 2
+fractal_octaves = 1
+fractal_lacunarity = 5.0
+fractal_gain = 1.0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cryqq"]
-width = 1024
-height = 1024
-noise = SubResource("FastNoiseLite_b3nq0")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_75bvq"]
+width = 256
+height = 256
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_hyc8p")
 seamless = true
+seamless_blend_skirt = 0.5
+bump_strength = 3.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hyc8p"]
 shader = ExtResource("1_7y55x")
@@ -60,26 +62,18 @@ shader_parameter/noise_texture = SubResource("NoiseTexture2D_hyc8p")
 shader_parameter/time_scale = 0.05
 shader_parameter/deep_color_a = Color(0, 0.6, 1, 1)
 shader_parameter/deep_color_b = Color(0, 0.6, 0.5, 1)
-shader_parameter/wave_noise_texture = SubResource("NoiseTexture2D_cryqq")
+shader_parameter/wave_noise_texture = SubResource("NoiseTexture2D_75bvq")
 shader_parameter/wave_scale = 1.0000000475
 shader_parameter/wave_strength = 0.5
 shader_parameter/wave_crest_color = Color(0.3, 0.75, 0.9, 1)
 shader_parameter/foam_noise_texture = SubResource("NoiseTexture2D_b3nq0")
-shader_parameter/foam_scale = 0.50000002305148
+shader_parameter/foam_scale = 10.0000004275
 shader_parameter/foam_noise_scale = 2.0
 shader_parameter/foam_threshold = 0.50000002375
 shader_parameter/foam_strength = 0.800000038
 shader_parameter/foam_color = Color(0.9, 0.95, 1, 1)
-shader_parameter/world_scale = 0.01999999955297
-shader_parameter/layer_b_scale = 1.2
-shader_parameter/layer_c_scale = 1.4
-shader_parameter/warp_strength = 0.3
 
 [node name="Game World" type="Node2D" unique_id=1526779244]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1591346675]
-script = ExtResource("2_75bvq")
-target = NodePath("../Player")
 
 [node name="Entities" type="Node2D" parent="." unique_id=2140729309]
 
