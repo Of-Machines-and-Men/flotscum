@@ -163,6 +163,7 @@ offset_right = 626.0
 offset_bottom = 286.0
 
 [node name="SettingsPanel" type="Panel" parent="." unique_id=1441355357]
+visible = false
 custom_minimum_size = Vector2(400, 300)
 layout_mode = 1
 anchors_preset = -1
