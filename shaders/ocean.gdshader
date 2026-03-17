@@ -51,7 +51,7 @@ void fragment() {
 	vec2 current_b = normalize(current_b_dir);
 	
 	float speed_a = current_a_speed * (sin(TIME * current_a_frequency) * 0.5 + 0.5);
-	float speed_b = current_a_speed * (sin(TIME * current_b_frequency) * 0.5 + 0.5);
+	float speed_b = current_b_speed * (sin(TIME * current_b_frequency) * 0.5 + 0.5);
 	
 	float wave_a = texture(wave_noise_texture, wave_uv * wave_scale + current_a * TIME * 0.01 * speed_a).r;
 	float wave_b = texture(wave_noise_texture, wave_uv * wave_scale + current_b * TIME * 0.01 * speed_b).r;
