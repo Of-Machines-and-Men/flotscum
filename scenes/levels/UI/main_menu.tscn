@@ -3,8 +3,86 @@
 [ext_resource type="Script" uid="uid://cse0sipir4nhv" path="res://scripts/main_menu.gd" id="1_telv4"]
 [ext_resource type="Script" uid="uid://bvxga6jtlm7kd" path="res://scripts/settings_panel.gd" id="2_dijy4"]
 [ext_resource type="Texture2D" uid="uid://chdix6dtkf4px" path="res://assets/LOGO/FLOTSCUM ALTERED1.svg" id="2_gq817"]
+[ext_resource type="Shader" uid="uid://bi28g0yfik0rs" path="res://shaders/ocean.gdshader" id="2_usnlr"]
+[ext_resource type="Script" uid="uid://8u3ts410dhvl" path="res://scenes/levels/ocean_background.gd" id="3_dhjum"]
 [ext_resource type="FontFile" uid="uid://befhsw8dexkeu" path="res://assets/fonts/Barriecito-Regular.ttf" id="3_gq817"]
 [ext_resource type="Script" uid="uid://182ltpuus8xv" path="res://scripts/credits_panel.gd" id="5_2vng5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qefvt"]
+noise_type = 3
+frequency = 0.003
+fractal_octaves = 6
+fractal_lacunarity = 2.3
+cellular_distance_function = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hyc8p"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_qefvt")
+seamless = true
+normalize = false
+seamless_blend_skirt = 0.5
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tum6w"]
+noise_type = 2
+frequency = 0.005
+fractal_octaves = 3
+fractal_lacunarity = 3.0
+fractal_gain = 1.0
+fractal_weighted_strength = 0.5
+cellular_return_type = 6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b3nq0"]
+width = 1024
+height = 1024
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_tum6w")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fpram"]
+frequency = 0.008
+fractal_type = 0
+fractal_octaves = 2
+fractal_lacunarity = 1.0
+cellular_return_type = 6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_75bvq"]
+width = 1024
+height = 1024
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_fpram")
+seamless = true
+normalize = false
+seamless_blend_skirt = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g64my"]
+shader = ExtResource("2_usnlr")
+shader_parameter/deep_water_texture = SubResource("NoiseTexture2D_hyc8p")
+shader_parameter/wave_noise_texture = SubResource("NoiseTexture2D_75bvq")
+shader_parameter/foam_noise_texture = SubResource("NoiseTexture2D_b3nq0")
+shader_parameter/wind_dir = Vector2(0.5, 0.8)
+shader_parameter/wind_speed = 1.2
+shader_parameter/camera_position = Vector2(0, 0)
+shader_parameter/viewport_size = Vector2(1152, 648)
+shader_parameter/current_a_dir = Vector2(0.7, 0.3)
+shader_parameter/current_b_dir = Vector2(-0.3, 0.7)
+shader_parameter/current_a_speed = 0.2000000095
+shader_parameter/current_b_speed = 0.10000000475
+shader_parameter/current_a_frequency = 0.2
+shader_parameter/current_b_frequency = 0.15
+shader_parameter/deep_parallax_multiplier = 0.2
+shader_parameter/time_scale = 0.05
+shader_parameter/deep_color_a = Color(0, 0.6, 1, 1)
+shader_parameter/deep_color_b = Color(0, 0.6, 0.5, 1)
+shader_parameter/wave_parallax_multiplier = 0.5
+shader_parameter/wave_scale = 1.0000000475
+shader_parameter/wave_strength = 0.5
+shader_parameter/wave_crest_color = Color(0.3, 0.75, 0.9, 1)
+shader_parameter/foam_parallax_multiplier = 1.0
+shader_parameter/foam_scale = 1.50000002375
+shader_parameter/foam_noise_scale = 2.0
+shader_parameter/foam_threshold = 0.650000030875
+shader_parameter/foam_strength = 0.800000038
+shader_parameter/foam_color = Color(0.9, 0.95, 1, 1)
 
 [node name="MainMenu" type="Control" unique_id=85937168]
 layout_mode = 3
@@ -18,6 +96,18 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_telv4")
+
+[node name="Ocean" type="ColorRect" parent="." unique_id=830737992]
+material = SubResource("ShaderMaterial_g64my")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_right = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_dhjum")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1788951075]
 layout_mode = 1
