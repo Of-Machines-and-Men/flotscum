@@ -11,14 +11,22 @@ config_version=5
 [application]
 
 config/name="FLOTSCUM"
-run/main_scene="uid://bu0l7lx6otexd"
+run/main_scene="uid://bb4hiieinte4h"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+config/windows_native_icon="res://assets/LOGO/icon.ico"
 
 [autoload]
 
 OceanCurrentManager="*uid://bguiqbwwi2c5b"
 EntityAttachmentManager="*uid://cr8gvyh1janjf"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+window/stretch/mode="canvas_items"
 
 [input]
 
