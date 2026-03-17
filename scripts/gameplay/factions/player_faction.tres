@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Faction" format=3 uid="uid://dskv7m6iblw4d"]
+
+[ext_resource type="Script" uid="uid://c1evpusbutkql" path="res://scripts/gameplay/factions/faction.gd" id="1_se77d"]
+[ext_resource type="Resource" uid="uid://m0gquprvac3y" path="res://scripts/gameplay/factions/enemy_faction.tres" id="2_gg8xg"]
+
+[resource]
+script = ExtResource("1_se77d")
+faction_name = "player"
+predator_factions = Array[ExtResource("1_se77d")]([ExtResource("2_gg8xg")])
+prey_factions = Array[ExtResource("1_se77d")]([ExtResource("2_gg8xg")])
+metadata/_custom_type_script = "uid://c1evpusbutkql"

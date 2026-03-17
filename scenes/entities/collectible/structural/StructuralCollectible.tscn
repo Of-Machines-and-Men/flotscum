@@ -9,12 +9,11 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_k8dyh"]
 radius = 16.0
 
-[node name="StructuralCollectible" type="RigidBody2D" unique_id=262448205 node_paths=PackedStringArray("entity_sprite", "collider", "impact_zone", "impact_collider")]
+[node name="StructuralCollectible" type="RigidBody2D" unique_id=262448205 node_paths=PackedStringArray("entity_sprite", "collider", "impact_zone")]
 script = ExtResource("1_3xq35")
 entity_sprite = NodePath("Sprite2D")
 collider = NodePath("Collider")
 impact_zone = NodePath("ImpactZone")
-impact_collider = NodePath("ImpactZone/ImpactCollider")
 metadata/_custom_type_script = "uid://cvoit73i6hn7e"
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1582658112]

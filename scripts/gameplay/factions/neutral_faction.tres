@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Faction" format=3 uid="uid://snpp4qgjueqg"]
+
+[ext_resource type="Script" uid="uid://c1evpusbutkql" path="res://scripts/gameplay/factions/faction.gd" id="1_emdb4"]
+[ext_resource type="Resource" uid="uid://dskv7m6iblw4d" path="res://scripts/gameplay/factions/player_faction.tres" id="2_uhpf5"]
+[ext_resource type="Resource" uid="uid://m0gquprvac3y" path="res://scripts/gameplay/factions/enemy_faction.tres" id="3_2grba"]
+
+[resource]
+script = ExtResource("1_emdb4")
+faction_name = "neutral"
+predator_factions = Array[ExtResource("1_emdb4")]([ExtResource("2_uhpf5"), ExtResource("3_2grba")])
+metadata/_custom_type_script = "uid://c1evpusbutkql"

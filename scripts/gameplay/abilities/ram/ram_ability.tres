@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://cqg2pd3a3x6lf"]
+
+[ext_resource type="Script" uid="uid://dqfu66lggac2x" path="res://scripts/gameplay/abilities/ram/ram_ability.gd" id="1_ae2ky"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ae2ky")
+metadata/_custom_type_script = "uid://d3fo5tn0n6ld"

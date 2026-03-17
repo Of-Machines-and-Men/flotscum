@@ -1,9 +1,6 @@
 class_name Collectible
 extends Entity
 
-@export var drift_force: float = 5.0
-@export var drift_interval: float = 2.0
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
