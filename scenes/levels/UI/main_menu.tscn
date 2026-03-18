@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://8u3ts410dhvl" path="res://scenes/levels/ocean_background.gd" id="3_dhjum"]
 [ext_resource type="FontFile" uid="uid://befhsw8dexkeu" path="res://assets/fonts/Barriecito-Regular.ttf" id="3_gq817"]
 [ext_resource type="Script" uid="uid://182ltpuus8xv" path="res://scripts/credits_panel.gd" id="5_2vng5"]
+[ext_resource type="Texture2D" uid="uid://bsut4r8ad3y1l" path="res://assets/UI/buttonboard.svg" id="6_dhjum"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qefvt"]
 noise_type = 3
@@ -84,6 +85,24 @@ shader_parameter/foam_threshold = 0.650000030875
 shader_parameter/foam_strength = 0.800000038
 shader_parameter/foam_color = Color(0.9, 0.95, 1, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qefvt"]
+texture = ExtResource("6_dhjum")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tum6w"]
+texture = ExtResource("6_dhjum")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fpram"]
+texture = ExtResource("6_dhjum")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g64my"]
+texture = ExtResource("6_dhjum")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dhjum"]
+texture = ExtResource("6_dhjum")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v2rh0"]
+texture = ExtResource("6_dhjum")
+
 [node name="MainMenu" type="Control" unique_id=85937168]
 layout_mode = 3
 anchors_preset = 15
@@ -131,15 +150,17 @@ texture = ExtResource("2_gq817")
 stretch_mode = 5
 
 [node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=2146290763]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qefvt")
 text = "PLAY"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=69847764]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
+theme_override_styles/normal = SubResource("StyleBoxTexture_tum6w")
 text = "SETTINGS
 "
 
@@ -147,12 +168,14 @@ text = "SETTINGS
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fpram")
 text = "CREDITS"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=640120204]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
+theme_override_styles/normal = SubResource("StyleBoxTexture_g64my")
 text = "QUIT"
 
 [node name="Background" type="TextureRect" parent="." unique_id=1355185762]
@@ -225,6 +248,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dhjum")
 text = "CLOSE"
 
 [node name="CreditsPanel" type="Panel" parent="." unique_id=1536161122]
@@ -271,11 +295,13 @@ uppercase = true
 
 [node name="Built ON" type="Label" parent="CreditsPanel/VBoxContainer" unique_id=593749257]
 layout_mode = 2
+text = "Built on the Godot Engine (4.6)"
 
 [node name="Close" type="Button" parent="CreditsPanel/VBoxContainer" unique_id=2081371552]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_gq817")
+theme_override_styles/normal = SubResource("StyleBoxTexture_v2rh0")
 text = "CLOSE"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
