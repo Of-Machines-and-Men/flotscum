@@ -102,9 +102,12 @@ func on_impact(impacted_entity: Entity) -> void:
 		_on_absorbed(impacted_entity)
 
 func _set_behaviour(behaviour: Ability) -> void:
-	if _current_behaviour:
+	if not behaviour:
 		_current_behaviour.on_deactivated(self)
-	if behaviour:
+		_current_behaviour = default_behaviour
+	if behaviour and not behaviour == _current_behaviour:
+		if _current_behaviour:
+			_current_behaviour.on_deactivated(self)
 		behaviour.on_activated(self)
 		_current_behaviour = behaviour
 
@@ -131,11 +134,30 @@ func think() -> void:
 	else:
 		_set_behaviour(default_behaviour)
 
-func get_closest_predator():
-	pass
+func get_priority_predator() -> Entity:
+	var target: Entity
+	var current_target_distance: float
+	if _perceived_predators.is_empty():
+		return null
+	for predator in _perceived_predators:
+		var target_distance = global_position.distance_to(predator.global_position)
+		if not target or target_distance < current_target_distance:
+			current_target_distance = target_distance
+			target = predator
+	return target
 	
-func get_closest_prey():
-	pass
+	
+func get_priority_prey() -> Entity:
+	var target: Entity
+	var current_target_distance: float
+	if _perceived_prey.is_empty():
+		return null
+	for prey in _perceived_prey:
+		var target_distance = global_position.distance_to(prey.global_position)
+		if not target or target_distance < current_target_distance:
+			current_target_distance = target_distance
+			target = prey
+	return target
 	
 func _get_most_aggressive_ability():
 	var best_match: Ability = null

@@ -3,7 +3,7 @@ extends DriftAbility
 
 func act(caller: Entity, delta: float) -> void:
 	super.act(caller, delta)
-	var predator = caller.get_closest_predator()
+	var predator = caller.get_priority_predator()
 	if not predator:
 		caller.trigger_decision("reached safety")
 		return

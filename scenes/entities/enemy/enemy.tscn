@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b80r5gviyuvkm" path="res://scenes/entities/enemy/enemy.gd" id="1_lw7nh"]
 
 [node name="Enemy" type="RigidBody2D" unique_id=1115726226]
+linear_damp = 1.0
 script = ExtResource("1_lw7nh")
 faction = 1
 absorber_priority = 1

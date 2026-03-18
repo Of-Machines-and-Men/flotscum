@@ -3,7 +3,7 @@ extends DriftAbility
 
 func act(caller: Entity, delta: float) -> void:
 	super.act(caller, delta)
-	var prey = caller.get_closest_prey()
+	var prey = caller.get_priority_prey()
 	if not prey:
 		caller.trigger_decision("target lost")
 	var distance = caller.global_position.distance_to(prey.global_position)
