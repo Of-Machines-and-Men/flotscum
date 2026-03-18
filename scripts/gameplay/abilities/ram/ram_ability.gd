@@ -1,7 +1,9 @@
 class_name RamAbility
 extends DriftAbility
 
-@export var ram_force: float = 500.0
+@export var ram_speed_multiplier: float = 3.0
+
+var _ram_engaged: bool = false
 
 func act(caller: Entity, delta: float) -> void:
 	super.act(caller, delta)
@@ -12,6 +14,10 @@ func act(caller: Entity, delta: float) -> void:
 	var distance = caller.global_position.distance_to(prey.global_position)
 	var direction = caller.global_position.direction_to(prey.global_position)
 	if distance > caller.get_max_range():
-		caller.apply_central_force(direction * engine_force * caller.mass)
+		_ram_engaged = false
+		caller.turn_towards(direction)
+		caller.engage_engine(caller.motor_force)
+	elif not caller.is_facing(direction, 0.1) and not _ram_engaged:
+		caller.turn_towards(direction)
 	else:
-		caller.apply_central_force(direction * ram_force * caller.mass)
+		caller.engage_engine(caller.motor_force * ram_speed_multiplier)

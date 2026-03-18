@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DriftAbility" format=3 uid="uid://x2gqnlu4uxca"]
+
+[ext_resource type="Script" uid="uid://d12eyvoswutn1" path="res://scripts/gameplay/abilities/drift/drift_ability.gd" id="1_fpmqe"]
+
+[resource]
+script = ExtResource("1_fpmqe")
+aggression = -1.0
+metadata/_custom_type_script = "uid://d12eyvoswutn1"

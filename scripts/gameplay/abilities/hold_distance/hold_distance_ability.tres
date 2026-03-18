@@ -1,8 +1,9 @@
-[gd_resource type="Resource" format=3 uid="uid://bthxta3xisrxa"]
+[gd_resource type="Resource" script_class="HoldDistanceAbility" format=3 uid="uid://bthxta3xisrxa"]
 
 [ext_resource type="Script" uid="uid://d0jn3alem50cn" path="res://scripts/gameplay/abilities/hold_distance/hold_distance_ability.gd" id="1_53713"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_53713")
+aggression = 1.0
 metadata/_custom_type_script = "uid://d3fo5tn0n6ld"
