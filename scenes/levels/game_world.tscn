@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bu0l7lx6otexd"]
 
 [ext_resource type="Shader" uid="uid://bi28g0yfik0rs" path="res://shaders/ocean.gdshader" id="1_7y55x"]
+[ext_resource type="PackedScene" uid="uid://dd3ahydw2vtl5" path="res://scenes/entities/enemy/rammer/rammer.tscn" id="2_75bvq"]
 [ext_resource type="Script" uid="uid://8u3ts410dhvl" path="res://scenes/levels/ocean_background.gd" id="2_hyc8p"]
 [ext_resource type="Script" uid="uid://c8mpy6wdtltu7" path="res://scenes/entities/spawners/spawner.gd" id="2_w0s2s"]
-[ext_resource type="PackedScene" uid="uid://fegfnwhatpdg" path="res://scenes/entities/collectible/structural/StructuralCollectible.tscn" id="3_4r7d4"]
 [ext_resource type="PackedScene" uid="uid://bx50wswt2uvmn" path="res://scenes/entities/player/player.tscn" id="6_75bvq"]
 [ext_resource type="PackedScene" uid="uid://i1s7inocv6wj" path="res://scenes/levels/UI/pause_menu.tscn" id="6_b3nq0"]
 
@@ -62,16 +62,16 @@ shader_parameter/current_a_speed = 0.2000000095
 shader_parameter/current_b_speed = 0.10000000475
 shader_parameter/current_a_frequency = 0.2
 shader_parameter/current_b_frequency = 0.15
-shader_parameter/deep_parallax_multiplier = 0.2
+shader_parameter/deep_parallax_multiplier = 0.10000000475
 shader_parameter/time_scale = 0.05
 shader_parameter/deep_color_a = Color(0, 0.6, 1, 1)
 shader_parameter/deep_color_b = Color(0, 0.6, 0.5, 1)
-shader_parameter/wave_parallax_multiplier = 0.5
+shader_parameter/wave_parallax_multiplier = 0.50000002375
 shader_parameter/wave_scale = 1.0000000475
 shader_parameter/wave_strength = 0.5
 shader_parameter/wave_crest_color = Color(0.3, 0.75, 0.9, 1)
 shader_parameter/foam_parallax_multiplier = 1.0
-shader_parameter/foam_scale = 1.50000002375
+shader_parameter/foam_scale = 1.5
 shader_parameter/foam_noise_scale = 2.0
 shader_parameter/foam_threshold = 0.650000030875
 shader_parameter/foam_strength = 0.800000038
@@ -83,7 +83,7 @@ shader_parameter/foam_color = Color(0.9, 0.95, 1, 1)
 
 [node name="Spawner" type="Node" parent="." unique_id=8477893]
 script = ExtResource("2_w0s2s")
-collectible_scene = ExtResource("3_4r7d4")
+collectible_scene = ExtResource("2_75bvq")
 spawn_margin = -20.0
 metadata/_custom_type_script = "uid://c8mpy6wdtltu7"
 

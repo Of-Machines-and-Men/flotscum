@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RamAbility" format=3 uid="uid://c7cy52ewynjks"]
+
+[ext_resource type="Script" uid="uid://dqfu66lggac2x" path="res://scripts/gameplay/abilities/ram/ram_ability.gd" id="1_ae2ky"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ae2ky")
+aggression = 1.0
+metadata/_custom_type_script = "uid://dqfu66lggac2x"

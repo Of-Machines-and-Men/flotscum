@@ -1,7 +1,12 @@
 [gd_scene format=3 uid="uid://bx50wswt2uvmn"]
 
 [ext_resource type="Script" uid="uid://ddo6cyibuwjad" path="res://scenes/entities/player/player.gd" id="1_1hmtu"]
+[ext_resource type="Script" uid="uid://d12eyvoswutn1" path="res://scripts/gameplay/abilities/drift/drift_ability.gd" id="2_58kc7"]
 [ext_resource type="Texture2D" uid="uid://k7k4l7f8cba6" path="res://assets/entities/Garbo.svg" id="2_635qg"]
+
+[sub_resource type="Resource" id="Resource_nh4ur"]
+script = ExtResource("2_58kc7")
+metadata/_custom_type_script = "uid://d12eyvoswutn1"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hmtu"]
 radius = 30.0
@@ -9,13 +14,16 @@ radius = 30.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_635qg"]
 radius = 32.0
 
-[node name="Player" type="RigidBody2D" unique_id=1684059445 node_paths=PackedStringArray("entity_sprite", "collider", "impact_zone", "impact_collider")]
+[node name="Player" type="RigidBody2D" unique_id=1684059445 node_paths=PackedStringArray("entity_sprite", "collider", "impact_zone")]
 linear_damp = 1.0
 script = ExtResource("1_1hmtu")
 entity_sprite = NodePath("Sprite2D")
 collider = NodePath("CollisionShape2D")
 impact_zone = NodePath("ImpactZone")
-impact_collider = NodePath("ImpactZone/ImpactCollider")
+faction = 0
+default_behaviour = SubResource("Resource_nh4ur")
+motor_force = 250.0
+motor_torque = 500.0
 absorber_priority = 2
 can_be_absorbed = false
 metadata/_custom_type_script = "uid://cdx4j041nqp46"

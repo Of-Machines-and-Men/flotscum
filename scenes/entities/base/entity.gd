@@ -4,36 +4,81 @@ extends RigidBody2D
 @export var entity_sprite: Sprite2D
 @export var collider: CollisionShape2D
 @export var impact_zone: Area2D
-@export var impact_collider: CollisionShape2D
+@export var perception_zone: Area2D
+@export var base_min_range: float = 0.0
+@export var base_max_range: float = 0.0
+
+@export var faction: FactionManager.Faction = FactionManager.Faction.NEUTRAL
+@export var abilities: Array[Ability] = []
+@export var default_stance: Enums.Stance = Enums.Stance.PASSIVE
+@export var default_behaviour: Ability
+
+@export var motor_force: float = 100.0
+@export var motor_torque: float = 100.0
+@export var torque_damping: float = 1.0
 
 @export var absorber_priority: int = 0
 @export var can_be_absorbed: bool = true
 
+@export var decision_interval: float = 1.0
+
+var _perceived_predators: Array[Entity] = []
+var _perceived_prey: Array[Entity] = []
+
+var _current_stance: Enums.Stance = default_stance
+
+var _decision_timer: float = decision_interval
+var _current_behaviour: Ability
+
 var is_attached: bool = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("entities")
 	gravity_scale = 0.0
 	if impact_zone:
 		impact_zone.body_entered.connect(_on_absorption_zone_overlap)
+	if perception_zone:
+		perception_zone.body_entered.connect(_on_perception_zone_entered)
+		perception_zone.body_exited.connect(_on_perception_zone_exited)
 	
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_attached:
 		return
-	_apply_current_force()
+	_decision_timer -= delta
+	if _decision_timer <= 0.0:
+		trigger_decision("decision time reached")
+	act(delta)
 
-func _apply_current_force() -> void:
-	var current_direction = _get_ocean_current_direction()
-	var current_strength = _get_ocean_current_strength()
-	var current_influence = 1.0 / mass
-	apply_central_force(current_direction * current_strength * current_influence)
+func engage_engine(force: float) -> void:
+	var forward = Vector2.RIGHT.rotated(rotation)
+	apply_central_force(forward * force)
+
+func is_facing(target_direction: Vector2, threshold: float) -> float:
+	var target_angle = target_direction.angle()
+	var angle_difference = wrapf(target_angle - rotation, -PI, PI)
+	return angle_difference <= threshold
 	
-func _get_ocean_current_direction() -> Vector2:
-	return OceanCurrentManager.get_current_direction_at_location(global_position)
+func turn_towards(target_direction: Vector2) -> void:
+	var target_angle = target_direction.angle()
+	var angle_difference = wrapf(target_angle - rotation, -PI, PI)
+	apply_torque(angle_difference * motor_torque * mass)
+	angular_velocity *= (1.0 - torque_damping * get_physics_process_delta_time())
 
-func _get_ocean_current_strength() -> float:
-	return OceanCurrentManager.get_current_strength_at_location(global_position)
+func _reset_decision_timer() -> void:
+	_decision_timer = decision_interval
+
+func _on_perception_zone_entered(perceived: Node) -> void:
+	if not perceived is Entity:
+		return
+	if FactionManager.is_predator(faction, perceived.faction):
+		_perceived_predators.append(perceived)
+	if FactionManager.is_prey(faction, perceived.faction):
+		_perceived_prey.append(perceived)
+	trigger_decision("perception_completed")
+	
+func _on_perception_zone_exited(unperceived: Node) -> void:
+	_perceived_predators.erase(unperceived)
+	_perceived_prey.erase(unperceived)
 
 func _on_absorption_zone_overlap(overlapped: Node) -> void:
 	if not impact_zone or overlapped == self:
@@ -55,3 +100,80 @@ func _on_absorbed(absorber: Node) -> void:
 func on_impact(impacted_entity: Entity) -> void:
 	if not is_attached:
 		_on_absorbed(impacted_entity)
+
+func _set_behaviour(behaviour: Ability) -> void:
+	if not behaviour:
+		_current_behaviour.on_deactivated(self)
+		_current_behaviour = default_behaviour
+	if behaviour and not behaviour == _current_behaviour:
+		if _current_behaviour:
+			_current_behaviour.on_deactivated(self)
+		behaviour.on_activated(self)
+		_current_behaviour = behaviour
+
+func trigger_decision(_reason: String) -> void:
+	perceive()
+	think()
+	_reset_decision_timer()
+
+func get_min_range() -> float:
+	return base_min_range
+
+func get_max_range() -> float:
+	return base_max_range
+
+func perceive() -> void:
+	# primarily handled by the zone overlaps, but can be overridden
+	pass
+	
+func think() -> void:
+	if (_current_stance == Enums.Stance.AGGRESSIVE) && _perceived_prey.size() > 0:
+		_set_behaviour(_get_most_aggressive_ability())
+	elif _perceived_predators.size() > 0:
+		_set_behaviour(_get_least_aggressive_ability())
+	else:
+		_set_behaviour(default_behaviour)
+
+func get_priority_predator() -> Entity:
+	var target: Entity
+	var current_target_distance: float
+	if _perceived_predators.is_empty():
+		return null
+	for predator in _perceived_predators:
+		var target_distance = global_position.distance_to(predator.global_position)
+		if not target or target_distance < current_target_distance:
+			current_target_distance = target_distance
+			target = predator
+	return target
+	
+	
+func get_priority_prey() -> Entity:
+	var target: Entity
+	var current_target_distance: float
+	if _perceived_prey.is_empty():
+		return null
+	for prey in _perceived_prey:
+		var target_distance = global_position.distance_to(prey.global_position)
+		if not target or target_distance < current_target_distance:
+			current_target_distance = target_distance
+			target = prey
+	return target
+	
+func _get_most_aggressive_ability():
+	var best_match: Ability = null
+	for ability in abilities:
+		if not best_match or ability.aggression > best_match.aggression:
+			best_match = ability
+	return best_match if best_match else default_behaviour
+	
+func _get_least_aggressive_ability():
+	var best_match: Ability = null
+	for ability in abilities:
+		if not best_match or ability.aggression > best_match.aggression:
+			best_match = ability
+	return best_match if best_match else default_behaviour
+
+func act(delta: float) -> void:
+	if _current_behaviour:
+		_current_behaviour.act(self, delta)
+	

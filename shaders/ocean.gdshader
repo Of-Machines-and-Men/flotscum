@@ -20,7 +20,7 @@ uniform float current_a_frequency : hint_range(0.0, 2.0) = 0.2;
 uniform float current_b_frequency : hint_range(0.0, 2.0) = 0.15;
 
 // Deep water
-uniform float deep_parallax_multiplier : hint_range(0.0, 1.0) = 0.2;
+uniform float deep_parallax_multiplier : hint_range(0.0, 1.0) = 0.1;
 uniform float time_scale : hint_range(0.0, 1.0) = 0.05;
 uniform vec4 deep_color_a : source_color = vec4(0.0, 0.6, 1.0, 1.0);
 uniform vec4 deep_color_b : source_color = vec4(0.0, 0.6, 0.5, 1.0);
@@ -67,8 +67,8 @@ void fragment() {
 	    texture(deep_water_texture, foam_uv * 0.2 + TIME * 0.02).r,
 	    texture(wave_noise_texture, foam_uv * 0.2 + TIME * 0.02 + vec2(0.4)).r
 	) * 2.0 - 1.0;
-	vec2 foam_uv_a = (foam_uv + foam_warp * 0.15) * foam_scale + current_a * TIME * 0.1 * speed_a;
-	vec2 foam_uv_b = (foam_uv + foam_warp * 0.15) * foam_scale + current_b * TIME * 0.1 * speed_b;
+	vec2 foam_uv_a = (foam_uv + foam_warp * 0.15) * foam_scale + current_a * TIME * 0.01 * speed_a;
+	vec2 foam_uv_b = (foam_uv + foam_warp * 0.15) * foam_scale + current_b * TIME * 0.01 * speed_b;
 	
 	float foam_a = texture(foam_noise_texture, foam_uv_a).r;
 	

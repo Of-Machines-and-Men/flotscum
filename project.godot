@@ -20,6 +20,7 @@ config/windows_native_icon="res://assets/UI/LOGO/icon.ico"
 
 OceanCurrentManager="*uid://bguiqbwwi2c5b"
 EntityAttachmentManager="*uid://cr8gvyh1janjf"
+FactionManager="*uid://dsbgyf8pd7nv3"
 
 [display]
 
