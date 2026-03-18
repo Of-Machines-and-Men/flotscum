@@ -55,13 +55,13 @@ func engage_engine(force: float) -> void:
 
 func is_facing(target_direction: Vector2, threshold: float) -> float:
 	var target_angle = target_direction.angle()
-	var angle_difference = wrapf(target_angle - rotation, -PI, PI)
-	return angle_difference <= threshold
+	var angle_diff = wrapf(target_angle - rotation, -PI, PI)
+	return angle_diff <= threshold
 	
 func turn_towards(target_direction: Vector2) -> void:
 	var target_angle = target_direction.angle()
-	var angle_difference = wrapf(target_angle - rotation, -PI, PI)
-	apply_torque(angle_difference * motor_torque * mass)
+	var angle_diff = wrapf(target_angle - rotation, -PI, PI)
+	apply_torque(angle_diff * motor_torque * mass)
 	angular_velocity *= (1.0 - torque_damping * get_physics_process_delta_time())
 
 func _reset_decision_timer() -> void:
@@ -135,8 +135,8 @@ func think() -> void:
 		_set_behaviour(default_behaviour)
 
 func get_priority_predator() -> Entity:
-	var target: Entity
-	var current_target_distance: float
+	var target: Entity = null
+	var current_target_distance: float = INF
 	if _perceived_predators.is_empty():
 		return null
 	for predator in _perceived_predators:
@@ -148,8 +148,8 @@ func get_priority_predator() -> Entity:
 	
 	
 func get_priority_prey() -> Entity:
-	var target: Entity
-	var current_target_distance: float
+	var target: Entity = null
+	var current_target_distance: float = INF
 	if _perceived_prey.is_empty():
 		return null
 	for prey in _perceived_prey:
