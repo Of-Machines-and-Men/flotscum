@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="FleeAbility" format=3 uid="uid://ccjh0dn2442ke"]
+
+[ext_resource type="Script" uid="uid://dyw2kaedstcm3" path="res://scripts/gameplay/abilities/flee/flee_ability.gd" id="1_fpmqe"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_fpmqe")
+aggression = -1.0
+metadata/_custom_type_script = "uid://dyw2kaedstcm3"
