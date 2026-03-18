@@ -101,4 +101,4 @@ script = ExtResource("2_hyc8p")
 
 [node name="Player" parent="." unique_id=1684059445 instance=ExtResource("6_75bvq")]
 
-[node name="PauseMenu" parent="Player" unique_id=1752045588 instance=ExtResource("6_b3nq0")]
+[node name="PauseMenu" parent="." unique_id=1752045588 instance=ExtResource("6_b3nq0")]
