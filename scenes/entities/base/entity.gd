@@ -13,6 +13,10 @@ extends RigidBody2D
 @export var default_stance: Enums.Stance = Enums.Stance.PASSIVE
 @export var default_behaviour: Ability
 
+@export var motor_force: float = 100.0
+@export var motor_torque: float = 100.0
+@export var torque_damping: float = 1.0
+
 @export var absorber_priority: int = 0
 @export var can_be_absorbed: bool = true
 
@@ -41,6 +45,21 @@ func _physics_process(delta: float) -> void:
 	if _decision_timer <= 0.0:
 		trigger_decision("decision time reached")
 	act(delta)
+
+func engage_engine(force: float) -> void:
+	var forward = Vector2.RIGHT.rotated(rotation)
+	apply_central_force(forward * force)
+
+func is_facing(target_direction: Vector2, threshold: float) -> float:
+	var target_angle = target_direction.angle()
+	var angle_difference = wrapf(target_angle - rotation, -PI, PI)
+	return angle_difference <= threshold
+	
+func turn_towards(target_direction: Vector2) -> void:
+	var target_angle = target_direction.angle()
+	var angle_difference = wrapf(target_angle - rotation, -PI, PI)
+	apply_torque(angle_difference * motor_torque * mass)
+	angular_velocity *= (1.0 - torque_damping * get_physics_process_delta_time())
 
 func _reset_decision_timer() -> void:
 	_decision_timer = decision_interval
