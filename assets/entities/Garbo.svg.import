@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb2ejfl2ddcys"
-path="res://.godot/imported/FLOTSCUM.svg-7802562ae6ca25d498bb1bd2be474d18.ctex"
+uid="uid://k7k4l7f8cba6"
+path="res://.godot/imported/Garbo.svg-7d925db0ff15cbf22d51cc922e0d4d08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/LOGO/FLOTSCUM.svg"
-dest_files=["res://.godot/imported/FLOTSCUM.svg-7802562ae6ca25d498bb1bd2be474d18.ctex"]
+source_file="res://assets/entities/Garbo.svg"
+dest_files=["res://.godot/imported/Garbo.svg-7d925db0ff15cbf22d51cc922e0d4d08.ctex"]
 
 [params]
 

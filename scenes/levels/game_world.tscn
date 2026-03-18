@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://8u3ts410dhvl" path="res://scenes/levels/ocean_background.gd" id="2_hyc8p"]
 [ext_resource type="Script" uid="uid://c8mpy6wdtltu7" path="res://scenes/entities/spawners/spawner.gd" id="2_w0s2s"]
 [ext_resource type="PackedScene" uid="uid://bx50wswt2uvmn" path="res://scenes/entities/player/player.tscn" id="6_75bvq"]
+[ext_resource type="PackedScene" uid="uid://i1s7inocv6wj" path="res://scenes/levels/UI/pause_menu.tscn" id="6_b3nq0"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hyc8p"]
 noise_type = 3
@@ -99,3 +100,8 @@ grow_vertical = 2
 script = ExtResource("2_hyc8p")
 
 [node name="Player" parent="." unique_id=1684059445 instance=ExtResource("6_75bvq")]
+
+[node name="Pause" type="CanvasLayer" parent="." unique_id=1782905485]
+layer = 10
+
+[node name="PauseMenu" parent="Pause" unique_id=1752045588 instance=ExtResource("6_b3nq0")]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chdix6dtkf4px"
-path="res://.godot/imported/FLOTSCUM ALTERED1.svg-d925ada54bf4b6dd94853b6d13e56bdb.ctex"
+uid="uid://bcjwd7grplxub"
+path="res://.godot/imported/FLOTSCUM ICON_WHITESQUARE.svg-4b7f250a0cb69b9dd13ba98ab12900cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/LOGO/FLOTSCUM ALTERED1.svg"
-dest_files=["res://.godot/imported/FLOTSCUM ALTERED1.svg-d925ada54bf4b6dd94853b6d13e56bdb.ctex"]
+source_file="res://assets/UI/LOGO/FLOTSCUM ICON_WHITESQUARE.svg"
+dest_files=["res://.godot/imported/FLOTSCUM ICON_WHITESQUARE.svg-4b7f250a0cb69b9dd13ba98ab12900cb.ctex"]
 
 [params]
 
