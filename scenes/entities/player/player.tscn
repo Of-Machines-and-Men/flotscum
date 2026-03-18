@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bx50wswt2uvmn"]
 
 [ext_resource type="Script" uid="uid://ddo6cyibuwjad" path="res://scenes/entities/player/player.gd" id="1_1hmtu"]
-[ext_resource type="Texture2D" uid="uid://dhf0qh6fxyjrj" path="res://assets/placeholders/player.png" id="2_635qg"]
+[ext_resource type="Texture2D" uid="uid://k7k4l7f8cba6" path="res://assets/entities/Garbo.svg" id="2_635qg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hmtu"]
 radius = 30.0
@@ -21,6 +21,7 @@ can_be_absorbed = false
 metadata/_custom_type_script = "uid://cdx4j041nqp46"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=80675551]
+rotation = 1.5707964
 texture = ExtResource("2_635qg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=837677379]

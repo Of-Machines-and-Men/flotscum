@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cse0sipir4nhv" path="res://scripts/main_menu.gd" id="1_telv4"]
 [ext_resource type="Script" uid="uid://bvxga6jtlm7kd" path="res://scripts/settings_panel.gd" id="2_dijy4"]
-[ext_resource type="Texture2D" uid="uid://chdix6dtkf4px" path="res://assets/LOGO/FLOTSCUM ALTERED1.svg" id="2_gq817"]
+[ext_resource type="Texture2D" uid="uid://chdix6dtkf4px" path="res://assets/UI/LOGO/FLOTSCUM ALTERED1.svg" id="2_gq817"]
 [ext_resource type="Shader" uid="uid://bi28g0yfik0rs" path="res://shaders/ocean.gdshader" id="2_usnlr"]
 [ext_resource type="Script" uid="uid://8u3ts410dhvl" path="res://scenes/levels/ocean_background.gd" id="3_dhjum"]
 [ext_resource type="FontFile" uid="uid://befhsw8dexkeu" path="res://assets/fonts/Barriecito-Regular.ttf" id="3_gq817"]
