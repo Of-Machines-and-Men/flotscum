@@ -8,11 +8,12 @@
 script = ExtResource("2_58kc7")
 metadata/_custom_type_script = "uid://d12eyvoswutn1"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1hmtu"]
-radius = 30.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_58kc7"]
+radius = 45.0
+height = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_635qg"]
-radius = 32.0
+radius = 46.0
 
 [node name="Player" type="RigidBody2D" unique_id=1684059445 node_paths=PackedStringArray("entity_sprite", "collider", "impact_zone")]
 linear_damp = 1.0
@@ -33,11 +34,13 @@ rotation = 1.5707964
 texture = ExtResource("2_635qg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=837677379]
-shape = SubResource("CircleShape2D_1hmtu")
+position = Vector2(5, 1)
+shape = SubResource("CapsuleShape2D_58kc7")
 
 [node name="ImpactZone" type="Area2D" parent="." unique_id=127467250]
 
 [node name="ImpactCollider" type="CollisionShape2D" parent="ImpactZone" unique_id=65333504]
+position = Vector2(5, 0)
 shape = SubResource("CircleShape2D_635qg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1279723923]
