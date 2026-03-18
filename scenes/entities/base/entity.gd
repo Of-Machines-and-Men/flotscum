@@ -8,7 +8,7 @@ extends RigidBody2D
 @export var base_min_range: float = 0.0
 @export var base_max_range: float = 0.0
 
-@export var faction: Faction
+@export var faction: FactionManager.Faction = FactionManager.Faction.NEUTRAL
 @export var abilities: Array[Ability] = []
 @export var default_stance: Enums.Stance = Enums.Stance.PASSIVE
 @export var default_behaviour: Ability
@@ -37,6 +37,9 @@ func _ready() -> void:
 	gravity_scale = 0.0
 	if impact_zone:
 		impact_zone.body_entered.connect(_on_absorption_zone_overlap)
+	if perception_zone:
+		perception_zone.body_entered.connect(_on_perception_zone_entered)
+		perception_zone.body_exited.connect(_on_perception_zone_exited)
 	
 func _physics_process(delta: float) -> void:
 	if is_attached:
@@ -67,9 +70,9 @@ func _reset_decision_timer() -> void:
 func _on_perception_zone_entered(perceived: Node) -> void:
 	if not perceived is Entity:
 		return
-	if perceived.faction in faction.predator_factions:
+	if FactionManager.is_predator(faction, perceived.faction):
 		_perceived_predators.append(perceived)
-	if perceived.faction in faction.prey_factions:
+	if FactionManager.is_prey(faction, perceived.faction):
 		_perceived_prey.append(perceived)
 	trigger_decision("perception_completed")
 	

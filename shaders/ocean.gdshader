@@ -20,7 +20,7 @@ uniform float current_a_frequency : hint_range(0.0, 2.0) = 0.2;
 uniform float current_b_frequency : hint_range(0.0, 2.0) = 0.15;
 
 // Deep water
-uniform float deep_parallax_multiplier : hint_range(0.0, 1.0) = 0.2;
+uniform float deep_parallax_multiplier : hint_range(0.0, 1.0) = 0.1;
 uniform float time_scale : hint_range(0.0, 1.0) = 0.05;
 uniform vec4 deep_color_a : source_color = vec4(0.0, 0.6, 1.0, 1.0);
 uniform vec4 deep_color_b : source_color = vec4(0.0, 0.6, 0.5, 1.0);

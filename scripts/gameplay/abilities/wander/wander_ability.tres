@@ -1,8 +1,8 @@
-[gd_resource type="Resource" format=3 uid="uid://0sw4ad3bboec"]
+[gd_resource type="Resource" script_class="WanderAbility" format=3 uid="uid://bq2putlufqkaa"]
 
 [ext_resource type="Script" uid="uid://bjfgy0dqul657" path="res://scripts/gameplay/abilities/wander/wander_ability.gd" id="1_5lgcq"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_5lgcq")
-metadata/_custom_type_script = "uid://d3fo5tn0n6ld"
+metadata/_custom_type_script = "uid://bjfgy0dqul657"

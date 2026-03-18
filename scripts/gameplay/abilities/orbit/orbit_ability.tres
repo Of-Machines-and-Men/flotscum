@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="OrbitAbility" format=3 uid="uid://cvb8mh3cgv8pt"]
+[gd_resource type="Resource" script_class="OrbitAbility" format=3 uid="uid://byuqxivve05l5"]
 
 [ext_resource type="Script" uid="uid://dlk0ayfkgc8tb" path="res://scripts/gameplay/abilities/orbit/orbit_ability.gd" id="1_s4yfn"]
 
@@ -6,4 +6,4 @@
 resource_local_to_scene = true
 script = ExtResource("1_s4yfn")
 aggression = 1.0
-metadata/_custom_type_script = "uid://d3fo5tn0n6ld"
+metadata/_custom_type_script = "uid://dlk0ayfkgc8tb"

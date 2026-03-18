@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bxenrbo7n42b5" path="res://scenes/entities/collectible/structural/structural_collectible.gd" id="1_3xq35"]
 [ext_resource type="Texture2D" uid="uid://dmy7v4d3g3w6a" path="res://assets/placeholders/collectible_good.png" id="2_um8dw"]
+[ext_resource type="Script" uid="uid://d12eyvoswutn1" path="res://scripts/gameplay/abilities/drift/drift_ability.gd" id="4_x1ypa"]
+
+[sub_resource type="Resource" id="Resource_24l6l"]
+script = ExtResource("4_x1ypa")
+metadata/_custom_type_script = "uid://d12eyvoswutn1"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_um8dw"]
 radius = 16.0
@@ -14,6 +19,7 @@ script = ExtResource("1_3xq35")
 entity_sprite = NodePath("Sprite2D")
 collider = NodePath("Collider")
 impact_zone = NodePath("ImpactZone")
+default_behaviour = SubResource("Resource_24l6l")
 metadata/_custom_type_script = "uid://cvoit73i6hn7e"
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1582658112]

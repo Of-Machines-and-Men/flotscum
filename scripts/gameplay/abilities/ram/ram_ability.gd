@@ -17,7 +17,7 @@ func act(caller: Entity, delta: float) -> void:
 		_ram_engaged = false
 		caller.turn_towards(direction)
 		caller.engage_engine(caller.motor_force)
-	elif not caller.is_facing(direction, 0.1) and not _ram_engaged:
+	elif not caller.is_facing(direction, 0.5) and not _ram_engaged:
 		caller.turn_towards(direction)
 	else:
 		caller.engage_engine(caller.motor_force * ram_speed_multiplier)
