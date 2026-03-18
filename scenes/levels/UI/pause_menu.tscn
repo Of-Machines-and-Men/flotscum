@@ -3,6 +3,16 @@
 [ext_resource type="FontFile" uid="uid://befhsw8dexkeu" path="res://assets/fonts/Barriecito-Regular.ttf" id="1_7d1hw"]
 [ext_resource type="Script" uid="uid://buinylnodnsew" path="res://scripts/pause_menu.gd" id="1_3144j"]
 [ext_resource type="Script" uid="uid://bvxga6jtlm7kd" path="res://scripts/settings_panel.gd" id="2_1l0lk"]
+[ext_resource type="Texture2D" uid="uid://bsut4r8ad3y1l" path="res://assets/UI/buttonboard.svg" id="3_4apfv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y5p44"]
+texture = ExtResource("3_4apfv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0uu7l"]
+texture = ExtResource("3_4apfv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g7asd"]
+texture = ExtResource("3_4apfv")
 
 [node name="PauseMenu" type="Control" unique_id=1752045588]
 process_mode = 3
@@ -15,20 +25,40 @@ grow_vertical = 2
 script = ExtResource("1_3144j")
 
 [node name="PausePanel" type="Panel" parent="." unique_id=791387398]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.5
+offset_top = -185.0
+offset_right = 196.5
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PausePanel" unique_id=1529402678]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -89.5
+offset_right = 100.0
+offset_bottom = 89.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Title" type="TextureRect" parent="PausePanel/VBoxContainer" unique_id=1218402970]
 layout_mode = 2
 
 [node name="PAUSED" type="Label" parent="PausePanel/VBoxContainer" unique_id=118191983]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7d1hw")
+theme_override_font_sizes/font_size = 48
 text = "PAUSED"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -37,12 +67,14 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_7d1hw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_y5p44")
 text = "RESUME"
 
 [node name="SettingsButton" type="Button" parent="PausePanel/VBoxContainer" unique_id=1018733389]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_7d1hw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0uu7l")
 text = "SETTINGS
 "
 
@@ -50,6 +82,7 @@ text = "SETTINGS
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_7d1hw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_g7asd")
 text = "QUIT"
 
 [node name="SettingsPanel" type="Panel" parent="." unique_id=1759778947]

@@ -5,6 +5,8 @@ extends Entity
 @export var rotation_torque: float = 500.0
 @export var rotation_damping: float = 1.0
 
+@onready var swim_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
@@ -23,6 +25,11 @@ func _apply_input_force() -> void:
 	
 	if input != Vector2.ZERO:
 		apply_central_force(input * move_force)
+		if not swim_sound.playing:
+			swim_sound.play()
+	else:
+		if swim_sound.playing:
+			swim_sound.stop()
 
 func _rotate_towards_mouse() -> void:
 	var mouse_pos = get_global_mouse_position()
