@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ch4ef3x8dbomb"]
+
+[ext_resource type="Script" uid="uid://c5xal78iqog4n" path="res://scenes/entities/enemy/rammer/rammer.gd" id="1_y8fwt"]
+[ext_resource type="Script" uid="uid://d3fo5tn0n6ld" path="res://scripts/gameplay/abilities/ability.gd" id="2_a6vox"]
+[ext_resource type="Script" uid="uid://dyw2kaedstcm3" path="res://scripts/gameplay/abilities/flee/flee_ability.gd" id="3_bda2y"]
+[ext_resource type="Script" uid="uid://dqfu66lggac2x" path="res://scripts/gameplay/abilities/ram/ram_ability.gd" id="4_46w2j"]
+[ext_resource type="Script" uid="uid://bjfgy0dqul657" path="res://scripts/gameplay/abilities/wander/wander_ability.gd" id="5_7i188"]
+[ext_resource type="Texture2D" uid="uid://d2ssq57oxdi3a" path="res://assets/entities/enemies/Trawler_Option2x.png" id="6_i06af"]
+
+[sub_resource type="Resource" id="Resource_xw88a"]
+script = ExtResource("3_bda2y")
+aggression = -1.0
+metadata/_custom_type_script = "uid://dyw2kaedstcm3"
+
+[sub_resource type="Resource" id="Resource_nasbk"]
+script = ExtResource("4_46w2j")
+aggression = 1.0
+metadata/_custom_type_script = "uid://dqfu66lggac2x"
+
+[sub_resource type="Resource" id="Resource_vll25"]
+script = ExtResource("5_7i188")
+metadata/_custom_type_script = "uid://bjfgy0dqul657"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ju6u"]
+radius = 9.0
+height = 68.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k3n7j"]
+radius = 397.02014
+
+[node name="Sprayer" type="RigidBody2D" unique_id=2645434 node_paths=PackedStringArray("entity_sprite", "collider", "perception_zone")]
+linear_damp = 1.0
+script = ExtResource("1_y8fwt")
+entity_sprite = NodePath("Sprite2D")
+collider = NodePath("CollisionShape2D")
+perception_zone = NodePath("PerceptionArea")
+base_max_range = 512.0
+faction = 1
+abilities = Array[ExtResource("2_a6vox")]([SubResource("Resource_xw88a"), SubResource("Resource_nasbk")])
+default_stance = 0
+default_behaviour = SubResource("Resource_vll25")
+motor_torque = 500.0
+absorber_priority = 1
+can_be_absorbed = false
+metadata/_custom_type_script = "uid://b80r5gviyuvkm"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1627163847]
+rotation = 1.5707964
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_i06af")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1521781837]
+visible = false
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_4ju6u")
+
+[node name="PerceptionArea" type="Area2D" parent="." unique_id=52149183]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerceptionArea" unique_id=1502097546]
+shape = SubResource("CircleShape2D_k3n7j")
