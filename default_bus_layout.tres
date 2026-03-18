@@ -1,0 +1,23 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://chu2lultmf52d"]
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
+resource_name = "Distortion"
+pre_gain = 9.0
+drive = 0.3
+post_gain = -6.0
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j3pel"]
+resource_name = "LowPassFilter"
+cutoff_hz = 4000.0
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_j3pel"]
+resource_name = "PitchShift"
+pitch_scale = 0.95
+
+[resource]
+bus/0/effect/0/effect = SubResource("AudioEffectDistortion_j3pel")
+bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectLowPassFilter_j3pel")
+bus/0/effect/1/enabled = true
+bus/0/effect/2/effect = SubResource("AudioEffectPitchShift_j3pel")
+bus/0/effect/2/enabled = true

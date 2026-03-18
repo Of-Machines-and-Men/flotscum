@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/sx_plr_move.wav-089a8466c1c6e3917572a94c71c65
 
 [params]
 
-force/8_bit=false
+force/8_bit=true
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
