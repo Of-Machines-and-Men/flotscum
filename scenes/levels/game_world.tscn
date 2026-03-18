@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bu0l7lx6otexd"]
 
 [ext_resource type="Shader" uid="uid://bi28g0yfik0rs" path="res://shaders/ocean.gdshader" id="1_7y55x"]
+[ext_resource type="PackedScene" uid="uid://dd3ahydw2vtl5" path="res://scenes/entities/enemy/rammer/rammer.tscn" id="2_75bvq"]
 [ext_resource type="Script" uid="uid://8u3ts410dhvl" path="res://scenes/levels/ocean_background.gd" id="2_hyc8p"]
 [ext_resource type="Script" uid="uid://c8mpy6wdtltu7" path="res://scenes/entities/spawners/spawner.gd" id="2_w0s2s"]
-[ext_resource type="PackedScene" uid="uid://fegfnwhatpdg" path="res://scenes/entities/collectible/structural/StructuralCollectible.tscn" id="3_4r7d4"]
 [ext_resource type="PackedScene" uid="uid://bx50wswt2uvmn" path="res://scenes/entities/player/player.tscn" id="6_75bvq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hyc8p"]
@@ -82,7 +82,7 @@ shader_parameter/foam_color = Color(0.9, 0.95, 1, 1)
 
 [node name="Spawner" type="Node" parent="." unique_id=8477893]
 script = ExtResource("2_w0s2s")
-collectible_scene = ExtResource("3_4r7d4")
+collectible_scene = ExtResource("2_75bvq")
 spawn_margin = -20.0
 metadata/_custom_type_script = "uid://c8mpy6wdtltu7"
 

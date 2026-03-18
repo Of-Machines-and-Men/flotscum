@@ -2,14 +2,40 @@
 
 [ext_resource type="Script" uid="uid://c5xal78iqog4n" path="res://scenes/entities/enemy/rammer/rammer.gd" id="1_k3n7j"]
 [ext_resource type="Texture2D" uid="uid://d4mpv5ql3gcvk" path="res://assets/placeholders/collectible_bad.png" id="2_0nyfv"]
+[ext_resource type="Script" uid="uid://d3fo5tn0n6ld" path="res://scripts/gameplay/abilities/ability.gd" id="2_4ju6u"]
+[ext_resource type="Script" uid="uid://dyw2kaedstcm3" path="res://scripts/gameplay/abilities/flee/flee_ability.gd" id="3_2m1kf"]
+[ext_resource type="Script" uid="uid://dqfu66lggac2x" path="res://scripts/gameplay/abilities/ram/ram_ability.gd" id="4_xw88a"]
+[ext_resource type="Script" uid="uid://bjfgy0dqul657" path="res://scripts/gameplay/abilities/wander/wander_ability.gd" id="5_nasbk"]
+
+[sub_resource type="Resource" id="Resource_c0snj"]
+script = ExtResource("3_2m1kf")
+metadata/_custom_type_script = "uid://dyw2kaedstcm3"
+
+[sub_resource type="Resource" id="Resource_8nfyo"]
+script = ExtResource("4_xw88a")
+metadata/_custom_type_script = "uid://dqfu66lggac2x"
+
+[sub_resource type="Resource" id="Resource_vll25"]
+script = ExtResource("5_nasbk")
+metadata/_custom_type_script = "uid://bjfgy0dqul657"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1b0dm"]
 radius = 16.0
 
-[node name="Rammer" type="RigidBody2D" unique_id=2645434 node_paths=PackedStringArray("entity_sprite", "collider")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_k3n7j"]
+radius = 1024.0
+
+[node name="Rammer" type="RigidBody2D" unique_id=2645434 node_paths=PackedStringArray("entity_sprite", "collider", "perception_zone")]
 script = ExtResource("1_k3n7j")
 entity_sprite = NodePath("Sprite2D")
 collider = NodePath("CollisionShape2D")
+perception_zone = NodePath("PerceptionArea")
+base_max_range = 512.0
+abilities = Array[ExtResource("2_4ju6u")]([SubResource("Resource_c0snj"), SubResource("Resource_8nfyo")])
+default_stance = 0
+default_behaviour = SubResource("Resource_vll25")
+motor_force = 50.0
+motor_torque = 1000.0
 absorber_priority = 1
 can_be_absorbed = false
 metadata/_custom_type_script = "uid://b80r5gviyuvkm"
@@ -19,3 +45,8 @@ texture = ExtResource("2_0nyfv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1521781837]
 shape = SubResource("CircleShape2D_1b0dm")
+
+[node name="PerceptionArea" type="Area2D" parent="." unique_id=52149183]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerceptionArea" unique_id=1502097546]
+shape = SubResource("CircleShape2D_k3n7j")
