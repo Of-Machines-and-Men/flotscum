@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d181arhnnmefb" path="res://scenes/entities/enemy/tanker/tanker.gd" id="1_nf21r"]
 [ext_resource type="Texture2D" uid="uid://cm6sgoy0rqhdc" path="res://assets/entities/enemies/Tanker_Option2x.png" id="2_op6bw"]
 [ext_resource type="Script" uid="uid://d3fo5tn0n6ld" path="res://scripts/gameplay/abilities/ability.gd" id="3_2tbjv"]
+[ext_resource type="AudioStream" uid="uid://c45hy5h8iobvl" path="res://assets/sounds/entities/Enemy/sx_ch_tankboat_horn.wav" id="3_mw5gq"]
 [ext_resource type="Script" uid="uid://bjfgy0dqul657" path="res://scripts/gameplay/abilities/wander/wander_ability.gd" id="4_mw5gq"]
 [ext_resource type="Shader" uid="uid://mbbv8o3qlcs1" path="res://shaders/drop_shadow.gdshader" id="5_xewui"]
 
@@ -38,6 +39,7 @@ radius = 397.02014
 [node name="Tanker" unique_id=1115726226 node_paths=PackedStringArray("entity_sprite") instance=ExtResource("1_50rvr")]
 script = ExtResource("1_nf21r")
 entity_sprite = NodePath("Sprite2D")
+spawn_sound = ExtResource("3_mw5gq")
 base_max_range = 512.0
 movement_abilities = Array[ExtResource("3_2tbjv")]([SubResource("Resource_fd82q")])
 default_behaviour = SubResource("Resource_0cl6c")

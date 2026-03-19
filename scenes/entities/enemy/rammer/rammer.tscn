@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c5xal78iqog4n" path="res://scenes/entities/enemy/rammer/rammer.gd" id="1_k3n7j"]
 [ext_resource type="Script" uid="uid://d3fo5tn0n6ld" path="res://scripts/gameplay/abilities/ability.gd" id="2_4ju6u"]
+[ext_resource type="AudioStream" uid="uid://hebaurdsbilv" path="res://assets/sounds/entities/Enemy/sx_ch_bonustrash_horn.wav" id="2_xw88a"]
 [ext_resource type="Script" uid="uid://dyw2kaedstcm3" path="res://scripts/gameplay/abilities/flee/flee_ability.gd" id="3_2m1kf"]
 [ext_resource type="Script" uid="uid://dqfu66lggac2x" path="res://scripts/gameplay/abilities/ram/ram_ability.gd" id="4_xw88a"]
 [ext_resource type="Script" uid="uid://bjfgy0dqul657" path="res://scripts/gameplay/abilities/wander/wander_ability.gd" id="5_nasbk"]
 [ext_resource type="Texture2D" uid="uid://d2ssq57oxdi3a" path="res://assets/entities/enemies/Trawler_Option2x.png" id="6_4ju6u"]
-[ext_resource type="Shader" path="res://shaders/drop_shadow.gdshader" id="6_xw88a"]
+[ext_resource type="Shader" uid="uid://mbbv8o3qlcs1" path="res://shaders/drop_shadow.gdshader" id="6_xw88a"]
 
 [sub_resource type="Resource" id="Resource_xw88a"]
 script = ExtResource("3_2m1kf")
@@ -47,6 +48,7 @@ linear_damp = 1.0
 script = ExtResource("1_k3n7j")
 entity_sprite = NodePath("Sprite2D")
 collider = NodePath("CollisionShape2D")
+spawn_sound = ExtResource("2_xw88a")
 perception_zone = NodePath("PerceptionArea")
 base_max_range = 512.0
 faction = 1
