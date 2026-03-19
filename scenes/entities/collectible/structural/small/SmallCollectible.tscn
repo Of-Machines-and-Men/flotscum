@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dkb514pc2y3d2"]
+
+[ext_resource type="PackedScene" uid="uid://fegfnwhatpdg" path="res://scenes/entities/collectible/structural/StructuralCollectible.tscn" id="1_hkqxp"]
+[ext_resource type="Script" uid="uid://bs2likfjlrtj0" path="res://scenes/entities/collectible/structural/small/small_collectible.gd" id="2_v08dm"]
+[ext_resource type="Texture2D" uid="uid://df8gwptnij7sh" path="res://assets/entities/trash/small/BOTTLE_2.png" id="3_4he7s"]
+[ext_resource type="Texture2D" uid="uid://bdmljjygnes06" path="res://assets/entities/trash/small/BOTTLE_3.png" id="4_58kw4"]
+[ext_resource type="Texture2D" uid="uid://btl7c80ndwpg6" path="res://assets/entities/trash/small/bottle_sprite.png" id="5_4s206"]
+[ext_resource type="Texture2D" uid="uid://cm0ljuvach48g" path="res://assets/entities/trash/small/Plastic_Rings.png" id="6_uqihf"]
+[ext_resource type="Texture2D" uid="uid://d4ann21qbxwfa" path="res://assets/entities/trash/small/teddy.png" id="7_7tlax"]
+
+[node name="SmallCollectible" unique_id=262448205 instance=ExtResource("1_hkqxp")]
+script = ExtResource("2_v08dm")
+sprites = Array[Texture2D]([ExtResource("3_4he7s"), ExtResource("4_58kw4"), ExtResource("5_4s206"), ExtResource("6_uqihf"), ExtResource("7_7tlax")])
