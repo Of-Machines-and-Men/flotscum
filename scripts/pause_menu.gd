@@ -2,7 +2,10 @@ extends Control
 
 @onready var pause_panel: Panel = $PausePanel
 @onready var vbox: VBoxContainer = $PausePanel/VBoxContainer
-@onready var settings_panel: Panel = $SettingsPanel 
+@onready var settings_panel: Panel = $SettingsPanel
+@onready var confirm_sound: AudioStreamPlayer2D = $ConfirmSound
+@onready var nav_sound: AudioStreamPlayer2D = $NavSound
+@onready var deny_sound: AudioStreamPlayer2D = $DenySound
 
 func _ready() -> void:
 	pause_panel.hide()
@@ -24,17 +27,24 @@ func _input(event):
 		else:
 			toggle_pause()
 	
+func _on_button_mouse_entered() -> void:
+	nav_sound.play()
+	
 func _on_resume_button_pressed() -> void:
 	toggle_pause()
+	confirm_sound.play()
 	
 func _on_settings_button_pressed() -> void:
 	vbox.hide()
 	settings_panel.show()
+	confirm_sound.play()
 
 func _on_quit_button_pressed() -> void:
+	deny_sound.play()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/levels/UI/main_menu.tscn")
 	
 func _on_close_button_pressed() -> void:
 	settings_panel.hide()
+	deny_sound.play()
 	vbox.show()
