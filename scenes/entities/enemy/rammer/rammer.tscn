@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://dd3ahydw2vtl5"]
 
 [ext_resource type="Script" uid="uid://c5xal78iqog4n" path="res://scenes/entities/enemy/rammer/rammer.gd" id="1_k3n7j"]
-[ext_resource type="Texture2D" uid="uid://d4mpv5ql3gcvk" path="res://assets/placeholders/collectible_bad.png" id="2_0nyfv"]
 [ext_resource type="Script" uid="uid://d3fo5tn0n6ld" path="res://scripts/gameplay/abilities/ability.gd" id="2_4ju6u"]
 [ext_resource type="Script" uid="uid://dyw2kaedstcm3" path="res://scripts/gameplay/abilities/flee/flee_ability.gd" id="3_2m1kf"]
 [ext_resource type="Script" uid="uid://dqfu66lggac2x" path="res://scripts/gameplay/abilities/ram/ram_ability.gd" id="4_xw88a"]
 [ext_resource type="Script" uid="uid://bjfgy0dqul657" path="res://scripts/gameplay/abilities/wander/wander_ability.gd" id="5_nasbk"]
+[ext_resource type="Texture2D" uid="uid://d2ssq57oxdi3a" path="res://assets/entities/enemies/Trawler_Option2x.png" id="6_4ju6u"]
+[ext_resource type="Shader" uid="uid://mbbv8o3qlcs1" path="res://shaders/drop_shadow.gdshader" id="6_xw88a"]
+[ext_resource type="Texture2D" uid="uid://cuifav3fn0vkg" path="res://assets/entities/trash/medium/fishing_net_02.png" id="7_2m1kf"]
 
 [sub_resource type="Resource" id="Resource_xw88a"]
 script = ExtResource("3_2m1kf")
@@ -21,15 +23,46 @@ metadata/_custom_type_script = "uid://dqfu66lggac2x"
 script = ExtResource("5_nasbk")
 metadata/_custom_type_script = "uid://bjfgy0dqul657"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1b0dm"]
-radius = 16.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nasbk"]
+shader = ExtResource("6_xw88a")
+shader_parameter/shadow_offset = Vector2(0, 0)
+shader_parameter/shadow_spread = 6.2190002954025
+shader_parameter/shadow_blur = 1.4290000678775
+shader_parameter/shadow_color = Color(0.02, 0.08, 0.12, 1)
+shader_parameter/shadow_scale = 1.10000004899012
+shader_parameter/shadow_opacity = 0.682000032395
+shader_parameter/shadow_falloff = 1.8
+shader_parameter/ripple_strength = 0.02000000095
+shader_parameter/ripple_speed = 1.2
+shader_parameter/ripple_frequency = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ju6u"]
+radius = 9.0
+height = 68.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k3n7j"]
-radius = 768.0
+radius = 397.02014
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xw88a"]
+size = Vector2(62.27663, 59.519722)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xw88a"]
+shader = ExtResource("6_xw88a")
+shader_parameter/shadow_offset = Vector2(0, 0)
+shader_parameter/shadow_spread = 13.42800063783
+shader_parameter/shadow_blur = 15.330000728175
+shader_parameter/shadow_color = Color(0.02, 0.08, 0.12, 1)
+shader_parameter/shadow_scale = 1.0
+shader_parameter/shadow_opacity = 0.39600001881
+shader_parameter/shadow_falloff = 1.5150000482125
+shader_parameter/ripple_strength = 0.012
+shader_parameter/ripple_speed = 1.2
+shader_parameter/ripple_frequency = 14.0
 
 [node name="Rammer" type="RigidBody2D" unique_id=2645434 node_paths=PackedStringArray("entity_sprite", "collider", "perception_zone")]
 linear_damp = 1.0
 script = ExtResource("1_k3n7j")
+max_net_distance = 0.0
 entity_sprite = NodePath("Sprite2D")
 collider = NodePath("CollisionShape2D")
 perception_zone = NodePath("PerceptionArea")
@@ -44,12 +77,37 @@ can_be_absorbed = false
 metadata/_custom_type_script = "uid://b80r5gviyuvkm"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1627163847]
-texture = ExtResource("2_0nyfv")
+material = SubResource("ShaderMaterial_nasbk")
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_4ju6u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1521781837]
-shape = SubResource("CircleShape2D_1b0dm")
+visible = false
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_4ju6u")
 
 [node name="PerceptionArea" type="Area2D" parent="." unique_id=52149183]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PerceptionArea" unique_id=1502097546]
 shape = SubResource("CircleShape2D_k3n7j")
+
+[node name="Net Attach Point" type="Marker2D" parent="." unique_id=898016857]
+position = Vector2(-65, 0)
+
+[node name="Net" type="StaticBody2D" parent="Net Attach Point" unique_id=1445551399]
+position = Vector2(65, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Net Attach Point/Net" unique_id=813675932]
+position = Vector2(-99, -4.0000014)
+rotation = -0.8103766
+shape = SubResource("RectangleShape2D_xw88a")
+
+[node name="Sprite2D" type="Sprite2D" parent="Net Attach Point/Net" unique_id=438512542]
+material = SubResource("ShaderMaterial_xw88a")
+position = Vector2(-105, -1.9999979)
+rotation = -2.3884513
+scale = Vector2(0.10000001, 0.10000001)
+texture = ExtResource("7_2m1kf")
+offset = Vector2(-50, 100)
