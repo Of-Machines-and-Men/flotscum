@@ -1,28 +1,64 @@
 [gd_scene format=3 uid="uid://blrgcv1y1gem8"]
 
+[ext_resource type="PackedScene" uid="uid://dsq8wpee482cx" path="res://scenes/entities/enemy/enemy.tscn" id="1_50rvr"]
 [ext_resource type="Script" uid="uid://d181arhnnmefb" path="res://scenes/entities/enemy/tanker/tanker.gd" id="1_nf21r"]
 [ext_resource type="Texture2D" uid="uid://cm6sgoy0rqhdc" path="res://assets/entities/enemies/Tanker_Option2x.png" id="2_op6bw"]
+[ext_resource type="Script" uid="uid://d3fo5tn0n6ld" path="res://scripts/gameplay/abilities/ability.gd" id="3_2tbjv"]
+[ext_resource type="Script" uid="uid://bjfgy0dqul657" path="res://scripts/gameplay/abilities/wander/wander_ability.gd" id="4_mw5gq"]
+[ext_resource type="Shader" uid="uid://mbbv8o3qlcs1" path="res://shaders/drop_shadow.gdshader" id="5_xewui"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ehy6"]
-radius = 25.0
-height = 220.0
+[sub_resource type="Resource" id="Resource_fd82q"]
+script = ExtResource("4_mw5gq")
+metadata/_custom_type_script = "uid://bjfgy0dqul657"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o1mdr"]
-radius = 665.003
+[sub_resource type="Resource" id="Resource_0cl6c"]
+script = ExtResource("4_mw5gq")
+metadata/_custom_type_script = "uid://bjfgy0dqul657"
 
-[node name="Tanker" type="RigidBody2D" unique_id=193841687]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_thw4l"]
+shader = ExtResource("5_xewui")
+shader_parameter/shadow_offset = Vector2(0, 0)
+shader_parameter/shadow_spread = 6.2190002954025
+shader_parameter/shadow_blur = 1.4290000678775
+shader_parameter/shadow_color = Color(0.02, 0.08, 0.12, 1)
+shader_parameter/shadow_scale = 1.10000004899012
+shader_parameter/shadow_opacity = 0.682000032395
+shader_parameter/shadow_falloff = 1.8
+shader_parameter/ripple_strength = 0.02000000095
+shader_parameter/ripple_speed = 1.2
+shader_parameter/ripple_frequency = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yxosr"]
+radius = 41.0
+height = 350.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5yk60"]
+radius = 397.02014
+
+[node name="Tanker" unique_id=1115726226 node_paths=PackedStringArray("entity_sprite") instance=ExtResource("1_50rvr")]
 script = ExtResource("1_nf21r")
+entity_sprite = NodePath("Sprite2D")
+base_max_range = 512.0
+movement_abilities = Array[ExtResource("3_2tbjv")]([SubResource("Resource_fd82q")])
+default_behaviour = SubResource("Resource_0cl6c")
+motor_force = 70.0
+motor_torque = 50.0
+torque_damping = 2.0
+base_health = 20
+can_be_attached = false
+sink_duration = 3.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1506079619]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1944853055]
+material = SubResource("ShaderMaterial_thw4l")
 rotation = 1.5707964
-scale = Vector2(0.75, 0.75)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_op6bw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=463453483]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=842554204]
 rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_5ehy6")
+shape = SubResource("CapsuleShape2D_yxosr")
 
-[node name="PerceptionArea" type="Area2D" parent="." unique_id=857309434]
+[node name="PerceptionArea" type="Area2D" parent="." index="2" unique_id=813995310]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PerceptionArea" unique_id=1326015311]
-shape = SubResource("CircleShape2D_o1mdr")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PerceptionArea" index="0" unique_id=1056514660]
+shape = SubResource("CircleShape2D_5yk60")
