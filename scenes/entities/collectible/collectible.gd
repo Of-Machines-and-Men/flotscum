@@ -9,7 +9,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	
 func _on_absorbed(absorber: Node) -> void:
-	super._on_absorbed(absorber)
+	super._on_attach(absorber)
 	activate()
 	
 func activate() -> void:
