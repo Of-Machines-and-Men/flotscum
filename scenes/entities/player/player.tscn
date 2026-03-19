@@ -41,7 +41,6 @@ default_behaviour = SubResource("Resource_nh4ur")
 motor_force = 250.0
 motor_torque = 500.0
 absorber_priority = 2
-can_be_absorbed = false
 metadata/_custom_type_script = "uid://cdx4j041nqp46"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=80675551]
@@ -67,3 +66,4 @@ drag_vertical_enabled = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1332907243]
 stream = ExtResource("5_bjvvg")
+volume_db = -7.03

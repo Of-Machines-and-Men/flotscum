@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c7vpjhcpjyq1x"]
+
+[ext_resource type="Script" uid="uid://bwa4okjfx5d2o" path="res://scripts/managers/ambient_manager.gd" id="1_aaxuu"]
+[ext_resource type="AudioStream" uid="uid://ci68wosh4ob80" path="res://assets/sounds/Ambience/sx_ab_opensea.wav" id="2_u1f8l"]
+
+[node name="AmbientManager" type="Node" unique_id=517177951]
+script = ExtResource("1_aaxuu")
+
+[node name="AmbientSound" type="AudioStreamPlayer2D" parent="." unique_id=1118055451]
+stream = ExtResource("2_u1f8l")
+autoplay = true

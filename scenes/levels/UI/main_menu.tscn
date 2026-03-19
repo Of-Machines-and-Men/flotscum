@@ -8,6 +8,9 @@
 [ext_resource type="FontFile" uid="uid://befhsw8dexkeu" path="res://assets/fonts/Barriecito-Regular.ttf" id="3_gq817"]
 [ext_resource type="Script" uid="uid://182ltpuus8xv" path="res://scripts/credits_panel.gd" id="5_2vng5"]
 [ext_resource type="Texture2D" uid="uid://bsut4r8ad3y1l" path="res://assets/UI/buttonboard.svg" id="6_dhjum"]
+[ext_resource type="AudioStream" uid="uid://d35ldyasnocdb" path="res://assets/sounds/UI/sx_ui_confirm.wav" id="9_fpram"]
+[ext_resource type="AudioStream" uid="uid://dvojdjb6mk6qm" path="res://assets/sounds/UI/sx_ui_nav.wav" id="10_g64my"]
+[ext_resource type="AudioStream" uid="uid://c5aclhv1jsnep" path="res://assets/sounds/UI/sx_ui_deny.wav" id="11_v2rh0"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qefvt"]
 noise_type = 3
@@ -304,10 +307,25 @@ theme_override_fonts/font = ExtResource("3_gq817")
 theme_override_styles/normal = SubResource("StyleBoxTexture_v2rh0")
 text = "CLOSE"
 
+[node name="ConfirmSound" type="AudioStreamPlayer2D" parent="." unique_id=32713700]
+stream = ExtResource("9_fpram")
+
+[node name="NavSound" type="AudioStreamPlayer2D" parent="." unique_id=404735690]
+stream = ExtResource("10_g64my")
+
+[node name="DenySound" type="AudioStreamPlayer2D" parent="." unique_id=943122882]
+stream = ExtResource("11_v2rh0")
+
+[connection signal="mouse_entered" from="VBoxContainer/PlayButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/SettingsButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/CreditsButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/QuitButton" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="toggled" from="SettingsPanel/VBoxContainer/HBoxContainer2/FullscreenToggle" to="SettingsPanel" method="_on_fullscreen_toggle_toggled"]
+[connection signal="mouse_entered" from="SettingsPanel/VBoxContainer/Close" to="SettingsPanel" method="_on_button_mouse_entered"]
 [connection signal="pressed" from="SettingsPanel/VBoxContainer/Close" to="SettingsPanel" method="_on_close_button_pressed"]
+[connection signal="mouse_entered" from="CreditsPanel/VBoxContainer/Close" to="CreditsPanel" method="_on_button_mouse_entered"]
 [connection signal="pressed" from="CreditsPanel/VBoxContainer/Close" to="CreditsPanel" method="_on_close_button_pressed"]
