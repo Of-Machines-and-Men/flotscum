@@ -59,7 +59,6 @@ func get_min_range() -> float:
 func get_max_range() -> float:
 	return base_max_range
 
-
 #endregion
 
 #region basic node behaviour
@@ -166,7 +165,6 @@ func _get_least_aggressive_ability():
 func act(delta: float) -> void:
 	if _current_behaviour:
 		_current_behaviour.act(self, delta)
-
 
 #endregion
 
