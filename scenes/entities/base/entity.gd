@@ -9,7 +9,7 @@ extends RigidBody2D
 @export var base_max_range: float = 0.0
 
 @export var faction: FactionManager.Faction = FactionManager.Faction.NEUTRAL
-@export var abilities: Array[Ability] = []
+@export var movement_abilities: Array[Ability] = []
 @export var default_stance: Enums.Stance = Enums.Stance.PASSIVE
 @export var default_behaviour: Ability
 
@@ -151,14 +151,14 @@ func get_priority_prey() -> Entity:
 
 func _get_most_aggressive_ability():
 	var best_match: Ability = null
-	for ability in abilities:
+	for ability in movement_abilities:
 		if not best_match or ability.aggression > best_match.aggression:
 			best_match = ability
 	return best_match if best_match else default_behaviour
 
 func _get_least_aggressive_ability():
 	var best_match: Ability = null
-	for ability in abilities:
+	for ability in movement_abilities:
 		if not best_match or ability.aggression > best_match.aggression:
 			best_match = ability
 	return best_match if best_match else default_behaviour
@@ -216,7 +216,7 @@ func on_receive_damage(damage: int, _damage_dealer: Node):
 			_on_death()
 
 func _on_death():
-	abilities.clear()
+	movement_abilities.clear()
 	default_behaviour = DriftAbility.new()
 	if perception_zone:
 		perception_zone.monitoring = false
