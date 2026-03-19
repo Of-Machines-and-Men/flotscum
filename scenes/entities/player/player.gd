@@ -30,7 +30,6 @@ func _rotate_towards_mouse() -> void:
 	turn_towards(target_direction)
 
 func _play_swim_sound() -> void:
-	print("velocity: ", linear_velocity.length(), " playing: ", swim_sound.playing)
 	var is_moving = linear_velocity.length() > 10.0
 	
 	if is_moving and not swim_sound.playing:

@@ -3,6 +3,7 @@ extends RigidBody2D
 
 @export var entity_sprite: Sprite2D
 @export var collider: CollisionShape2D
+@export var spawn_sound: AudioStream
 @export var impact_zone: Area2D
 @export var perception_zone: Area2D
 @export var base_min_range: float = 0.0
@@ -26,6 +27,8 @@ extends RigidBody2D
 @export var invulnerability_delay: float = 0.5
 
 @export var decision_interval: float = 1.0
+
+@onready var _spawn_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 
 var _perceived_predators: Array[Entity] = []
 var _perceived_prey: Array[Entity] = []
@@ -66,6 +69,13 @@ func get_max_range() -> float:
 func _ready() -> void:
 	add_to_group("entities")
 	gravity_scale = 0.0
+	#Add audio player dynamically
+	if spawn_sound:
+		var player = AudioStreamPlayer2D.new()
+		add_child(player)  # add to tree FIRST
+		player.stream = spawn_sound
+		player.play()  # THEN play
+		player.finished.connect(player.queue_free)
 	if impact_zone:
 		impact_zone.body_entered.connect(_on_absorption_zone_overlap)
 	if perception_zone:

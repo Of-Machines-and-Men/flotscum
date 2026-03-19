@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cqf3oh57fueq2"]
+
+[ext_resource type="PackedScene" uid="uid://fegfnwhatpdg" path="res://scenes/entities/collectible/structural/StructuralCollectible.tscn" id="1_eamle"]
+[ext_resource type="Script" uid="uid://bsfbh0miqvirc" path="res://scenes/entities/collectible/structural/medium/medium_collectible.gd" id="2_u55ps"]
+[ext_resource type="Texture2D" uid="uid://7apodresb4jy" path="res://assets/entities/trash/medium/fishing_net_01.png" id="3_ig6iy"]
+[ext_resource type="Script" uid="uid://d3fo5tn0n6ld" path="res://scripts/gameplay/abilities/ability.gd" id="3_xfxun"]
+[ext_resource type="Texture2D" uid="uid://cuifav3fn0vkg" path="res://assets/entities/trash/medium/fishing_net_02.png" id="4_36nk0"]
+[ext_resource type="Texture2D" uid="uid://cyemgmwni5g30" path="res://assets/entities/trash/medium/JERRYCAN.png" id="5_4ew05"]
+[ext_resource type="Texture2D" uid="uid://dhbgdkxw22is3" path="res://assets/entities/trash/medium/TOXIC_BARREL.png" id="6_squpy"]
+
+[node name="MediumCollectible" unique_id=262448205 instance=ExtResource("1_eamle")]
+script = ExtResource("2_u55ps")
+sprites = Array[Texture2D]([ExtResource("3_ig6iy"), ExtResource("4_36nk0"), ExtResource("5_4ew05"), ExtResource("6_squpy")])
+base_min_range = 0.0
+base_max_range = 0.0
+faction = 2
+movement_abilities = Array[ExtResource("3_xfxun")]([])
+default_stance = 1
+motor_force = 100.0
+motor_torque = 100.0
+torque_damping = 1.0
+base_health = 10
+absorber_priority = 0
+can_be_attached = true
+can_be_reattached = false
+sink_duration = 2.0
+reattachment_delay = 1.0
+invulnerability_delay = 0.5
+decision_interval = 1.0
+
+[node name="Sprite2D" parent="." index="1" unique_id=467209328]
+scale = Vector2(0.07, 0.07)
