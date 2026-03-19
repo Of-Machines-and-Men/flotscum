@@ -4,23 +4,11 @@
 [ext_resource type="Script" uid="uid://d12eyvoswutn1" path="res://scripts/gameplay/abilities/drift/drift_ability.gd" id="2_58kc7"]
 [ext_resource type="Texture2D" uid="uid://k7k4l7f8cba6" path="res://assets/entities/Garbo.svg" id="2_635qg"]
 [ext_resource type="Shader" uid="uid://mbbv8o3qlcs1" path="res://shaders/drop_shadow.gdshader" id="3_nh4ur"]
-[ext_resource type="Shader" uid="uid://bpjl7610umjtm" path="res://shaders/ripple.gdshader" id="5_5sj0x"]
 [ext_resource type="AudioStream" uid="uid://jnbyvafycg54" path="res://assets/sounds/player/sx_plr_move.wav" id="5_bjvvg"]
-[ext_resource type="Script" uid="uid://dtlont4kq5675" path="res://scripts/managers/ripple_manager.gd" id="6_ovg4i"]
 
 [sub_resource type="Resource" id="Resource_nh4ur"]
 script = ExtResource("2_58kc7")
 metadata/_custom_type_script = "uid://d12eyvoswutn1"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wli1"]
-shader = ExtResource("5_5sj0x")
-shader_parameter/ripple_speed = 2.0
-shader_parameter/ripple_frequency = 8.0
-shader_parameter/ripple_strength = 0.6
-shader_parameter/ripple_color = Color(0.8, 0.95, 1, 0.5)
-
-[sub_resource type="QuadMesh" id="QuadMesh_j0oqr"]
-size = Vector2(125, 175)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bjvvg"]
 shader = ExtResource("3_nh4ur")
@@ -55,12 +43,6 @@ motor_torque = 500.0
 absorber_priority = 2
 can_be_absorbed = false
 metadata/_custom_type_script = "uid://cdx4j041nqp46"
-
-[node name="Ripple" type="MeshInstance2D" parent="." unique_id=1511060812]
-material = SubResource("ShaderMaterial_7wli1")
-position = Vector2(5, 0)
-mesh = SubResource("QuadMesh_j0oqr")
-script = ExtResource("6_ovg4i")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=80675551]
 material = SubResource("ShaderMaterial_bjvvg")
