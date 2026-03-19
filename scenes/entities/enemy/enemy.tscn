@@ -7,5 +7,4 @@ linear_damp = 1.0
 script = ExtResource("1_lw7nh")
 faction = 1
 absorber_priority = 1
-can_be_absorbed = false
 metadata/_custom_type_script = "uid://cdx4j041nqp46"
