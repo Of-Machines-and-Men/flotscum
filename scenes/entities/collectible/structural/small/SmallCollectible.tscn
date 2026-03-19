@@ -7,7 +7,26 @@
 [ext_resource type="Texture2D" uid="uid://btl7c80ndwpg6" path="res://assets/entities/trash/small/bottle_sprite.png" id="5_4s206"]
 [ext_resource type="Texture2D" uid="uid://cm0ljuvach48g" path="res://assets/entities/trash/small/Plastic_Rings.png" id="6_uqihf"]
 [ext_resource type="Texture2D" uid="uid://d4ann21qbxwfa" path="res://assets/entities/trash/small/teddy.png" id="7_7tlax"]
+[ext_resource type="Script" uid="uid://d3fo5tn0n6ld" path="res://scripts/gameplay/abilities/ability.gd" id="8_58kw4"]
 
 [node name="SmallCollectible" unique_id=262448205 instance=ExtResource("1_hkqxp")]
+scale = Vector2(0.02, 0.02)
+gravity_scale = 0.0
 script = ExtResource("2_v08dm")
 sprites = Array[Texture2D]([ExtResource("3_4he7s"), ExtResource("4_58kw4"), ExtResource("5_4s206"), ExtResource("6_uqihf"), ExtResource("7_7tlax")])
+base_min_range = 0.0
+base_max_range = 0.0
+faction = 2
+movement_abilities = Array[ExtResource("8_58kw4")]([])
+default_stance = 1
+motor_force = 100.0
+motor_torque = 100.0
+torque_damping = 1.0
+base_health = 10
+absorber_priority = 0
+can_be_attached = true
+can_be_reattached = false
+sink_duration = 2.0
+reattachment_delay = 1.0
+invulnerability_delay = 0.5
+decision_interval = 1.0
