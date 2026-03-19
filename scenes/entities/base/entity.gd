@@ -17,8 +17,13 @@ extends RigidBody2D
 @export var motor_torque: float = 100.0
 @export var torque_damping: float = 1.0
 
+@export var base_health: int = 10
 @export var absorber_priority: int = 0
-@export var can_be_absorbed: bool = true
+@export var can_be_attached: bool = true
+@export var can_be_reattached: bool = false
+@export var sink_duration: float = 2.0
+@export var reattachment_delay: float = 1.0
+@export var invulnerability_delay: float = 0.5
 
 @export var decision_interval: float = 1.0
 
@@ -30,7 +35,34 @@ var _current_stance: Enums.Stance = default_stance
 var _decision_timer: float = decision_interval
 var _current_behaviour: Ability
 
+var _invulnerability_timer: float = invulnerability_delay
+
+var current_health: int = 10
 var is_attached: bool = false
+var ready_for_cleanup = false
+
+#region attribute getters and setters
+
+func _set_behaviour(behaviour: Ability) -> void:
+	if not behaviour:
+		_current_behaviour.on_deactivated(self)
+		_current_behaviour = default_behaviour
+	if behaviour and not behaviour == _current_behaviour:
+		if _current_behaviour:
+			_current_behaviour.on_deactivated(self)
+		behaviour.on_activated(self)
+		_current_behaviour = behaviour
+
+func get_min_range() -> float:
+	return base_min_range
+
+func get_max_range() -> float:
+	return base_max_range
+
+
+#endregion
+
+#region basic node behaviour
 
 func _ready() -> void:
 	add_to_group("entities")
@@ -44,10 +76,15 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if is_attached:
 		return
+	_invulnerability_timer -= delta
 	_decision_timer -= delta
 	if _decision_timer <= 0.0:
 		trigger_decision("decision time reached")
 	act(delta)
+
+#endregion
+
+#region movement
 
 func engage_engine(force: float) -> void:
 	var forward = Vector2.RIGHT.rotated(rotation)
@@ -64,68 +101,22 @@ func turn_towards(target_direction: Vector2) -> void:
 	apply_torque(angle_diff * motor_torque * mass)
 	angular_velocity *= (1.0 - torque_damping * get_physics_process_delta_time())
 
+#endregion
+
+#region ai handles
+
 func _reset_decision_timer() -> void:
 	_decision_timer = decision_interval
-
-func _on_perception_zone_entered(perceived: Node) -> void:
-	if not perceived is Entity:
-		return
-	if FactionManager.is_predator(faction, perceived.faction):
-		_perceived_predators.append(perceived)
-	if FactionManager.is_prey(faction, perceived.faction):
-		_perceived_prey.append(perceived)
-	trigger_decision("perception_completed")
-	
-func _on_perception_zone_exited(unperceived: Node) -> void:
-	_perceived_predators.erase(unperceived)
-	_perceived_prey.erase(unperceived)
-
-func _on_absorption_zone_overlap(overlapped: Node) -> void:
-	if not impact_zone or overlapped == self:
-		return
-	if overlapped is Entity and overlapped.can_be_absorbed:
-		EntityAttachmentManager.request_absorb(self, overlapped)
-
-func _on_absorbed(absorber: Node) -> void:
-	is_attached = true
-	freeze = true
-	freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
-	
-	# To prevent physics glitches, don't collide with entities we've already collided with
-	add_collision_exception_with(absorber)
-	absorber.add_collision_exception_with(self)
-	
-	call_deferred("reparent", absorber, true)
-
-func on_impact(impacted_entity: Entity) -> void:
-	if not is_attached:
-		_on_absorbed(impacted_entity)
-
-func _set_behaviour(behaviour: Ability) -> void:
-	if not behaviour:
-		_current_behaviour.on_deactivated(self)
-		_current_behaviour = default_behaviour
-	if behaviour and not behaviour == _current_behaviour:
-		if _current_behaviour:
-			_current_behaviour.on_deactivated(self)
-		behaviour.on_activated(self)
-		_current_behaviour = behaviour
 
 func trigger_decision(_reason: String) -> void:
 	perceive()
 	think()
 	_reset_decision_timer()
 
-func get_min_range() -> float:
-	return base_min_range
-
-func get_max_range() -> float:
-	return base_max_range
-
 func perceive() -> void:
 	# primarily handled by the zone overlaps, but can be overridden
 	pass
-	
+
 func think() -> void:
 	if (_current_stance == Enums.Stance.AGGRESSIVE) && _perceived_prey.size() > 0:
 		_set_behaviour(_get_most_aggressive_ability())
@@ -145,8 +136,7 @@ func get_priority_predator() -> Entity:
 			current_target_distance = target_distance
 			target = predator
 	return target
-	
-	
+
 func get_priority_prey() -> Entity:
 	var target: Entity = null
 	var current_target_distance: float = INF
@@ -158,14 +148,14 @@ func get_priority_prey() -> Entity:
 			current_target_distance = target_distance
 			target = prey
 	return target
-	
+
 func _get_most_aggressive_ability():
 	var best_match: Ability = null
 	for ability in abilities:
 		if not best_match or ability.aggression > best_match.aggression:
 			best_match = ability
 	return best_match if best_match else default_behaviour
-	
+
 func _get_least_aggressive_ability():
 	var best_match: Ability = null
 	for ability in abilities:
@@ -176,4 +166,87 @@ func _get_least_aggressive_ability():
 func act(delta: float) -> void:
 	if _current_behaviour:
 		_current_behaviour.act(self, delta)
+
+
+#endregion
+
+#region perception
+
+func _on_perception_zone_entered(perceived: Node) -> void:
+	if not perceived is Entity:
+		return
+	if FactionManager.is_predator(faction, perceived.faction):
+		_perceived_predators.append(perceived)
+	if FactionManager.is_prey(faction, perceived.faction):
+		_perceived_prey.append(perceived)
+	trigger_decision("perception_completed")
 	
+func _on_perception_zone_exited(unperceived: Node) -> void:
+	_perceived_predators.erase(unperceived)
+	_perceived_prey.erase(unperceived)
+
+#endregion
+
+#region collision handling
+
+func _on_absorption_zone_overlap(overlapped: Node) -> void:
+	if not impact_zone or overlapped == self:
+		return
+	if overlapped is Entity and overlapped.can_be_attached:
+		EntityAttachmentManager.request_attach(self, overlapped)
+
+func on_impact(impacted_entity: Entity) -> void:
+	if not is_attached:
+		_on_attach(impacted_entity)
+
+#endregion
+
+#region health and lifecycle
+
+func on_apply_damage(damage: int, target: Node):
+	if target is Entity:
+		target.on_receive_damage(damage)
+
+func on_receive_damage(damage: int, _damage_dealer: Node):
+	if _invulnerability_timer <= 0.0:
+		_invulnerability_timer = invulnerability_delay
+		current_health -= damage
+		trigger_decision("received damage")
+		if current_health <= 0:
+			_on_death()
+
+func _on_death():
+	abilities.clear()
+	default_behaviour = DriftAbility.new()
+	if perception_zone:
+		perception_zone.monitoring = false
+	if is_attached:
+		_on_detach()
+	await get_tree().create_timer(sink_duration).timeout
+	if is_instance_valid(self) and not is_attached:
+		queue_free()
+
+func _on_attach(absorber: Node) -> void:
+	is_attached = true
+	freeze = true
+	freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
+	
+	# To prevent physics glitches, don't collide with entities we've already collided with
+	add_collision_exception_with(absorber)
+	absorber.add_collision_exception_with(self)
+	
+	call_deferred("reparent", absorber, true)
+
+func _on_detach() -> void:
+	if not is_attached:
+		return
+	var world = get_tree().get_first_node_in_group("world")
+	reparent(world, true)
+	is_attached = false
+	freeze = false
+	if can_be_reattached:
+		await get_tree().create_timer(reattachment_delay).timeout
+		can_be_attached = true
+		current_health = base_health
+
+#endregion
