@@ -27,3 +27,6 @@ sink_duration = 2.0
 reattachment_delay = 1.0
 invulnerability_delay = 0.5
 decision_interval = 1.0
+
+[node name="Sprite2D" parent="." index="1" unique_id=467209328]
+scale = Vector2(0.07, 0.07)

@@ -3,4 +3,3 @@ extends StructuralCollectible
 
 func _ready() -> void:
 	super._ready()
-	scale = Vector2(0.02, 0.02)
