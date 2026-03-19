@@ -12,11 +12,3 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	_constrain_net()
-
-func _constrain_net() -> void:
-	var attach_pos = attach_point.global_position
-	var back_dir = Vector2.LEFT.rotated(rotation)  # adjust LEFT/RIGHT to match your sprite
-	var target_pos = attach_pos + back_dir * max_net_distance
-	net.global_position = net.global_position.lerp(target_pos, 0.3)
-	net.rotation = lerp_angle(net.rotation, rotation, 0.3)
