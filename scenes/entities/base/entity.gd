@@ -71,8 +71,11 @@ func _ready() -> void:
 	gravity_scale = 0.0
 	#Add audio player dynamically
 	if spawn_sound:
-		_spawn_player.stream = spawn_sound
-		_spawn_player.play()
+		var player = AudioStreamPlayer2D.new()
+		add_child(player)  # add to tree FIRST
+		player.stream = spawn_sound
+		player.play()  # THEN play
+		player.finished.connect(player.queue_free)
 	if impact_zone:
 		impact_zone.body_entered.connect(_on_absorption_zone_overlap)
 	if perception_zone:
