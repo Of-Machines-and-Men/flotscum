@@ -1,6 +1,6 @@
 extends Node
 
-@onready var ambient_sound: AudioStreamPlayer2D = $AmbientSound
+@onready var ambient_sound: AudioStreamPlayer = $AmbientSound
 
 func _ready() -> void:
 	ambient_sound.finished.connect(_on_ambient_finished)

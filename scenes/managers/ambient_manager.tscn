@@ -6,6 +6,5 @@
 [node name="AmbientManager" type="Node" unique_id=517177951]
 script = ExtResource("1_aaxuu")
 
-[node name="AmbientSound" type="AudioStreamPlayer2D" parent="." unique_id=1118055451]
+[node name="AmbientSound" type="AudioStreamPlayer" parent="." unique_id=634690282]
 stream = ExtResource("2_u1f8l")
-autoplay = true
