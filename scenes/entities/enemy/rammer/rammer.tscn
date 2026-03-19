@@ -10,10 +10,12 @@
 
 [sub_resource type="Resource" id="Resource_xw88a"]
 script = ExtResource("3_2m1kf")
+aggression = -1.0
 metadata/_custom_type_script = "uid://dyw2kaedstcm3"
 
 [sub_resource type="Resource" id="Resource_nasbk"]
 script = ExtResource("4_xw88a")
+aggression = 1.0
 metadata/_custom_type_script = "uid://dqfu66lggac2x"
 
 [sub_resource type="Resource" id="Resource_vll25"]
