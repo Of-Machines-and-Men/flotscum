@@ -3,9 +3,22 @@
 [ext_resource type="FontFile" uid="uid://befhsw8dexkeu" path="res://assets/fonts/Barriecito-Regular.ttf" id="1_7d1hw"]
 [ext_resource type="Script" uid="uid://buinylnodnsew" path="res://scripts/pause_menu.gd" id="1_3144j"]
 [ext_resource type="Script" uid="uid://bvxga6jtlm7kd" path="res://scripts/settings_panel.gd" id="2_1l0lk"]
+[ext_resource type="Texture2D" uid="uid://bsut4r8ad3y1l" path="res://assets/UI/buttonboard.svg" id="3_g7asd"]
 [ext_resource type="AudioStream" uid="uid://d35ldyasnocdb" path="res://assets/sounds/UI/sx_ui_confirm.wav" id="4_0uu7l"]
 [ext_resource type="AudioStream" uid="uid://dvojdjb6mk6qm" path="res://assets/sounds/UI/sx_ui_nav.wav" id="5_g7asd"]
 [ext_resource type="AudioStream" uid="uid://c5aclhv1jsnep" path="res://assets/sounds/UI/sx_ui_deny.wav" id="6_q70wg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q70wg"]
+texture = ExtResource("3_g7asd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_njw35"]
+texture = ExtResource("3_g7asd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grj5y"]
+texture = ExtResource("3_g7asd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a1atm"]
+texture = ExtResource("3_g7asd")
 
 [node name="PauseMenu" type="Control" unique_id=1752045588]
 process_mode = 3
@@ -18,56 +31,77 @@ grow_vertical = 2
 script = ExtResource("1_3144j")
 
 [node name="PausePanel" type="Panel" parent="." unique_id=791387398]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PausePanel" unique_id=1529402678]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -97.5
+offset_right = 100.0
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
 
 [node name="Title" type="TextureRect" parent="PausePanel/VBoxContainer" unique_id=1218402970]
 layout_mode = 2
 
 [node name="PAUSED" type="Label" parent="PausePanel/VBoxContainer" unique_id=118191983]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7d1hw")
+theme_override_font_sizes/font_size = 32
 text = "PAUSED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResumeButton" type="Button" parent="PausePanel/VBoxContainer" unique_id=1846957691]
-custom_minimum_size = Vector2(100, 40)
+custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_7d1hw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_q70wg")
 text = "RESUME"
 
 [node name="SettingsButton" type="Button" parent="PausePanel/VBoxContainer" unique_id=1018733389]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_7d1hw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_njw35")
 text = "SETTINGS
 "
 
 [node name="QuitButton" type="Button" parent="PausePanel/VBoxContainer" unique_id=2105306850]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_7d1hw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_grj5y")
 text = "QUIT"
 
 [node name="SettingsPanel" type="Panel" parent="." unique_id=1759778947]
-visible = false
+z_index = 1
 custom_minimum_size = Vector2(400, 300)
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.57900006
-anchor_bottom = 0.786
-offset_left = -233.0
-offset_top = -236.5
-offset_right = 115.635864
-offset_bottom = -244.52203
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_1l0lk")
@@ -85,6 +119,7 @@ theme_override_constants/separation = 16
 
 [node name="Settings" type="Label" parent="SettingsPanel/VBoxContainer" unique_id=1053918246]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7d1hw")
 theme_override_font_sizes/font_size = 48
 text = "SETTINGS"
 horizontal_alignment = 1
@@ -95,6 +130,7 @@ layout_mode = 2
 [node name="Master Volume" type="Label" parent="SettingsPanel/VBoxContainer/HBoxContainer" unique_id=2118438770]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7d1hw")
 text = "MASTER VOLUME"
 vertical_alignment = 1
 
@@ -108,6 +144,7 @@ layout_mode = 2
 [node name="Fullscreen" type="Label" parent="SettingsPanel/VBoxContainer/HBoxContainer2" unique_id=1954173331]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_7d1hw")
 text = "FULLSCREEN"
 vertical_alignment = 1
 
@@ -115,9 +152,10 @@ vertical_alignment = 1
 layout_mode = 2
 
 [node name="Close" type="Button" parent="SettingsPanel/VBoxContainer" unique_id=1478560730]
-custom_minimum_size = Vector2(100, 40)
+custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_7d1hw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_a1atm")
 text = "CLOSE"
 
 [node name="ConfirmSound" type="AudioStreamPlayer2D" parent="." unique_id=1866638352]

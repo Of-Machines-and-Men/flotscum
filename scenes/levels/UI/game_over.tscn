@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://0t3owjirnwdr"]
 
 [ext_resource type="Script" uid="uid://rqd5agenrhrh" path="res://scripts/game_over.gd" id="1_xnd6m"]
+[ext_resource type="Texture2D" uid="uid://dhmanloj7y22v" path="res://assets/UI/LOGO/GAME OVER SCREEN.svg" id="2_f7hfo"]
 [ext_resource type="FontFile" uid="uid://befhsw8dexkeu" path="res://assets/fonts/Barriecito-Regular.ttf" id="2_jum7q"]
 [ext_resource type="Texture2D" uid="uid://bsut4r8ad3y1l" path="res://assets/UI/buttonboard.svg" id="2_lc8n8"]
 
@@ -20,28 +21,38 @@ grow_vertical = 2
 script = ExtResource("1_xnd6m")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1798652032]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.008
-anchor_right = 0.008
-offset_left = 803.64
-offset_top = 447.0
-offset_right = 1125.64
-offset_bottom = 642.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -399.0
+offset_right = 500.0
+offset_bottom = 399.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Game Over" type="Label" parent="VBoxContainer" unique_id=219259007]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=1889053698]
+custom_minimum_size = Vector2(400, 300)
 layout_mode = 2
-text = "GAME OVER"
-horizontal_alignment = 1
+texture = ExtResource("2_f7hfo")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="RetryButton" type="Button" parent="VBoxContainer" unique_id=1015939111]
+custom_minimum_size = Vector2(400, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jum7q")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jum7q")
 text = "RETRY"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer" unique_id=1194243604]
+custom_minimum_size = Vector2(400, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jum7q")
 theme_override_styles/normal = SubResource("StyleBoxTexture_f7hfo")
