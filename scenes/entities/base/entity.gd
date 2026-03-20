@@ -14,6 +14,7 @@ extends RigidBody2D
 @export var movement_abilities: Array[Ability] = []
 @export var default_stance: Enums.Stance = Enums.Stance.PASSIVE
 @export var default_behaviour: Ability
+@export var difficulty_modifier: float = 0.0
 
 @export var motor_force: float = 100.0
 @export var motor_force_multiplier = 1.0
@@ -71,6 +72,7 @@ func get_max_range() -> float:
 
 func _ready() -> void:
 	add_to_group("entities")
+	DifficultyManager.notify_spawn(difficulty_modifier)
 	gravity_scale = 0.0
 	#Add audio player dynamically
 	if spawn_sound:
@@ -238,6 +240,7 @@ func on_receive_damage(damage: int, _damage_dealer: Node):
 			_on_death()
 
 func _on_death():
+	DifficultyManager.notify_death(difficulty_modifier)
 	movement_abilities.clear()
 	default_behaviour = DriftAbility.new()
 	if perception_zone:
@@ -263,7 +266,7 @@ func _on_detach() -> void:
 	if not is_attached:
 		return
 	var world = get_tree().get_first_node_in_group("world")
-	reparent(world, true)
+	call_deferred("reparent", world, true)
 	is_attached = false
 	freeze = false
 	if can_be_reattached:

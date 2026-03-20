@@ -11,12 +11,8 @@ extends Node
 @export var spawner_max_retries: int = 10
 @export var max_entities: int = 20
 
-@export var max_difficulty_weight: float = 2.0
-@export var min_difficulty_weight: float = 1.0
-
 var _current_spawn_interval: float = (spawn_interval_max - spawn_interval_min) / 2 + spawn_interval_min
 var _spawn_attempts: int = 0
-var _current_difficulty: float = 0.0
 var _timer: float = 0.0
 
 func _process(delta: float) -> void:
@@ -34,17 +30,17 @@ func _spawn() -> void:
 		return
 		
 	var spawn_count = randi_range(int(per_spawn_count_min), int(per_spawn_count_max))
-	_current_difficulty = 0.0
 	_spawn_attempts = 0
-	var target_difficulty = randf_range(min_difficulty_weight, max_difficulty_weight)
+	var target_difficulty = DifficultyManager.get_target_difficulty()
+	if target_difficulty >= DifficultyManager.maximum_difficulty:
+		return
 	
 	var spawned_entities = 0
 	var spawnable_entities: Array[SpawnerEntry] = _get_valid_entries_by_difficulty(target_difficulty)
 	while spawned_entities < spawn_count and spawnable_entities.size() and _spawn_attempts < spawner_max_retries:
 		_spawn_attempts += 1
 		var entry = _get_entry_by_weighted_roll(spawnable_entities)
-		if entry && _current_difficulty < target_difficulty:
-			_current_difficulty += entry.difficulty_weight
+		if entry && DifficultyManager.current_difficulty < target_difficulty:
 			_spawn_entity(entry, camera)
 			spawned_entities += 1
 		spawnable_entities = _get_valid_entries_by_difficulty(target_difficulty)
@@ -65,7 +61,7 @@ func _get_entry_by_weighted_roll(entries: Array[SpawnerEntry]) -> SpawnerEntry:
 	return null
 
 func _get_valid_entries_by_difficulty(target_difficulty: float) -> Array[SpawnerEntry]:
-	var valid_difficulty_weight = target_difficulty - _current_difficulty
+	var valid_difficulty_weight = target_difficulty - DifficultyManager.current_difficulty
 	var valid_entries: Array[SpawnerEntry] = []
 	for entry in spawnable_items:
 		if entry.difficulty_weight <= valid_difficulty_weight:
