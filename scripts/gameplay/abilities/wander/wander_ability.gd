@@ -13,4 +13,4 @@ func act(caller: Entity, delta: float) -> void:
 		_wander_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 		_wander_timer = wander_change_interval
 	caller.turn_towards(_wander_direction)
-	caller.engage_engine(caller.motor_force)
+	caller.engage_engine(caller.get_motor_force())

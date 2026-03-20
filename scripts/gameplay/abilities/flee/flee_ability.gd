@@ -9,4 +9,4 @@ func act(caller: Entity, delta: float) -> void:
 		return
 	var direction = -caller.global_position.direction_to(predator.global_position)
 	caller.turn_towards(direction)
-	caller.engage_engine(caller.motor_force)
+	caller.engage_engine(caller.get_motor_force())

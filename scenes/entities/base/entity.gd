@@ -6,6 +6,7 @@ extends RigidBody2D
 @export var spawn_sound: AudioStream
 @export var impact_zone: Area2D
 @export var perception_zone: Area2D
+@export var damage_zone: Area2D
 @export var base_min_range: float = 0.0
 @export var base_max_range: float = 0.0
 
@@ -15,7 +16,9 @@ extends RigidBody2D
 @export var default_behaviour: Ability
 
 @export var motor_force: float = 100.0
+@export var motor_force_multiplier = 1.0
 @export var motor_torque: float = 100.0
+@export var motor_torque_multiplier = 10.0
 @export var torque_damping: float = 1.0
 
 @export var base_health: int = 10
@@ -81,6 +84,8 @@ func _ready() -> void:
 	if perception_zone:
 		perception_zone.body_entered.connect(_on_perception_zone_entered)
 		perception_zone.body_exited.connect(_on_perception_zone_exited)
+	if damage_zone:
+		damage_zone.body_entered.connect(_on_damage_zone_entered)
 	
 func _physics_process(delta: float) -> void:
 	if is_attached:
@@ -94,6 +99,11 @@ func _physics_process(delta: float) -> void:
 #endregion
 
 #region movement
+func get_motor_force() -> float:
+	return motor_force * motor_force_multiplier
+
+func get_motor_torque() -> float:
+	return motor_torque * motor_torque_multiplier
 
 func engage_engine(force: float) -> void:
 	var forward = Vector2.RIGHT.rotated(rotation)
@@ -107,7 +117,8 @@ func is_facing(target_direction: Vector2, threshold: float) -> float:
 func turn_towards(target_direction: Vector2) -> void:
 	var target_angle = target_direction.angle()
 	var angle_diff = wrapf(target_angle - rotation, -PI, PI)
-	apply_torque(angle_diff * motor_torque * mass)
+	apply_torque(angle_diff * get_motor_torque() * mass)
+	# Apply damping (angular drag)
 	angular_velocity *= (1.0 - torque_damping * get_physics_process_delta_time())
 
 #endregion
@@ -128,9 +139,9 @@ func perceive() -> void:
 
 func think() -> void:
 	if (_current_stance == Enums.Stance.AGGRESSIVE) && _perceived_prey.size() > 0:
-		_set_behaviour(_get_most_aggressive_ability())
+		_set_behaviour(_get_most_aggressive_movement_ability())
 	elif _perceived_predators.size() > 0:
-		_set_behaviour(_get_least_aggressive_ability())
+		_set_behaviour(_get_least_aggressive_movement_ability())
 	else:
 		_set_behaviour(default_behaviour)
 
@@ -158,14 +169,14 @@ func get_priority_prey() -> Entity:
 			target = prey
 	return target
 
-func _get_most_aggressive_ability():
+func _get_most_aggressive_movement_ability():
 	var best_match: Ability = null
 	for ability in movement_abilities:
 		if not best_match or ability.aggression > best_match.aggression:
 			best_match = ability
 	return best_match if best_match else default_behaviour
 
-func _get_least_aggressive_ability():
+func _get_least_aggressive_movement_ability():
 	var best_match: Ability = null
 	for ability in movement_abilities:
 		if not best_match or ability.aggression > best_match.aggression:
@@ -203,7 +214,7 @@ func _on_absorption_zone_overlap(overlapped: Node) -> void:
 	if overlapped is Entity and overlapped.can_be_attached:
 		EntityAttachmentManager.request_attach(self, overlapped)
 
-func on_impact(impacted_entity: Entity) -> void:
+func on_attempt_attach(impacted_entity: Entity) -> void:
 	if not is_attached:
 		_on_attach(impacted_entity)
 
@@ -211,9 +222,12 @@ func on_impact(impacted_entity: Entity) -> void:
 
 #region health and lifecycle
 
+func _on_damage_zone_entered(_target: Node):
+	pass
+
 func on_apply_damage(damage: int, target: Node):
 	if target is Entity:
-		target.on_receive_damage(damage)
+		target.on_receive_damage(damage, self)
 
 func on_receive_damage(damage: int, _damage_dealer: Node):
 	if _invulnerability_timer <= 0.0:

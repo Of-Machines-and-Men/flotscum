@@ -12,9 +12,7 @@ func _physics_process(delta: float) -> void:
 	_rotate_towards_mouse()
 	_apply_input_force()
 	_play_swim_sound()
-	
 
-	
 func _apply_input_force() -> void:
 	var input = Vector2(
 		Input.get_axis("moveleft", "moveright"),
@@ -22,7 +20,7 @@ func _apply_input_force() -> void:
 	).normalized()
 	
 	if input != Vector2.ZERO:
-		apply_central_force(input * motor_force)
+		apply_central_force(input * get_motor_force())
 
 func _rotate_towards_mouse() -> void:
 	var mouse_pos = get_global_mouse_position()
