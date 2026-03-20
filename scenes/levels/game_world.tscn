@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://bi28g0yfik0rs" path="res://shaders/ocean.gdshader" id="1_7y55x"]
 [ext_resource type="Shader" uid="uid://dt3nip826txs3" path="res://shaders/pixelation.gdshader" id="1_b3nq0"]
+[ext_resource type="Script" uid="uid://cijf5ypfjgaki" path="res://scenes/levels/game_world.gd" id="1_u8n12"]
 [ext_resource type="PackedScene" uid="uid://dd3ahydw2vtl5" path="res://scenes/entities/enemy/rammer/rammer.tscn" id="2_75bvq"]
 [ext_resource type="Script" uid="uid://8u3ts410dhvl" path="res://scenes/levels/ocean_background.gd" id="2_hyc8p"]
 [ext_resource type="Script" uid="uid://c8mpy6wdtltu7" path="res://scenes/entities/spawners/spawner.gd" id="2_w0s2s"]
@@ -115,6 +116,7 @@ shader_parameter/foam_strength = 0.800000038
 shader_parameter/foam_color = Color(0.9, 0.95, 1, 1)
 
 [node name="Game World" type="Node2D" unique_id=1526779244]
+script = ExtResource("1_u8n12")
 
 [node name="Pause" type="CanvasLayer" parent="." unique_id=1782905485]
 layer = 30

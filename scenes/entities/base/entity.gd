@@ -33,9 +33,6 @@ extends RigidBody2D
 
 @export var decision_interval: float = 1.0
 
-@onready var _spawn_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
-
-
 var _perceived_predators: Array[Entity] = []
 var _perceived_prey: Array[Entity] = []
 
@@ -263,7 +260,7 @@ func _on_death():
 		_on_detach()
 	await get_tree().create_timer(sink_duration).timeout
 	if is_instance_valid(self) and not is_attached:
-		queue_free()
+		call_deferred("queue_free")
 
 func _on_attach(absorber: Node) -> void:
 	is_attached = true
@@ -280,9 +277,9 @@ func _on_detach() -> void:
 	if not is_attached:
 		return
 	var world = get_tree().get_first_node_in_group("world")
-	call_deferred("reparent", world, true)
 	is_attached = false
-	freeze = false
+	set_deferred("freeze", false)
+	call_deferred("reparent", world, true)
 	if can_be_reattached:
 		await get_tree().create_timer(reattachment_delay).timeout
 		can_be_attached = true
