@@ -16,12 +16,17 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 config/windows_native_icon="res://assets/UI/LOGO/icon.ico"
 
+[audio]
+
+buses/default_bus_layout="uid://chu2lultmf52d"
+
 [autoload]
 
 OceanCurrentManager="*uid://bguiqbwwi2c5b"
 EntityAttachmentManager="*uid://cr8gvyh1janjf"
 FactionManager="*res://scripts/managers/faction_manager.gd"
 AmbientManager="*uid://c7vpjhcpjyq1x"
+DifficultyManager="*uid://bmjfwb0cdb8j"
 
 [display]
 
