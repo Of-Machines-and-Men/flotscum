@@ -37,13 +37,26 @@ script = ExtResource("1_1hmtu")
 entity_sprite = NodePath("Sprite2D")
 collider = NodePath("CollisionShape2D")
 impact_zone = NodePath("ImpactZone")
+base_min_range = null
+base_max_range = null
 faction = 0
+movement_abilities = null
+default_stance = null
 default_behaviour = SubResource("Resource_nh4ur")
+difficulty_modifier = null
 motor_force = 250.0
+motor_force_multiplier = null
 motor_torque = 500.0
+motor_torque_multiplier = null
+torque_damping = null
 base_health = 20
 absorber_priority = 2
 can_be_attached = false
+can_be_reattached = null
+sink_duration = null
+reattachment_delay = null
+invulnerability_delay = null
+decision_interval = null
 metadata/_custom_type_script = "uid://cdx4j041nqp46"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=80675551]
