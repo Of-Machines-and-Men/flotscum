@@ -43,7 +43,7 @@ var _current_behaviour: Ability
 
 var _invulnerability_timer: float = invulnerability_delay
 
-var current_health: int = 10
+var current_health: int = base_health
 var is_attached: bool = false
 var ready_for_cleanup = false
 

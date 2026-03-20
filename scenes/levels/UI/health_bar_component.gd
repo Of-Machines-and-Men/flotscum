@@ -21,7 +21,7 @@ func setup(base_health: int, curr_health: int) -> void:
 	queue_redraw()
 
 func update_health(curr_health: int) -> void:
-	current_health = curr_health
+	current_health = max(curr_health, 0)
 	queue_redraw()
 
 func _draw() -> void:
