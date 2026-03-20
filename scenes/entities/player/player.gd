@@ -1,7 +1,7 @@
 class_name Player
 extends Entity
 
-@onready var swim_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var swim_sound: AudioStreamPlayer2D = $MovementSoundPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
@@ -30,6 +30,10 @@ func _rotate_towards_mouse() -> void:
 	var mouse_pos = get_global_mouse_position()
 	var target_direction = global_position.direction_to(mouse_pos)
 	turn_towards(target_direction)
+
+func on_receive_damage(damage: int, _damage_dealer: Node):
+	$DamageSoundPlayer.play()
+	super.on_receive_damage(damage, _damage_dealer)
 
 func _play_swim_sound() -> void:
 	var is_moving = linear_velocity.length() > 10.0

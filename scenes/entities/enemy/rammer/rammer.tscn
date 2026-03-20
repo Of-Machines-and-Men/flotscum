@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c5xal78iqog4n" path="res://scenes/entities/enemy/rammer/rammer.gd" id="1_k3n7j"]
 [ext_resource type="Script" uid="uid://d3fo5tn0n6ld" path="res://scripts/gameplay/abilities/ability.gd" id="2_4ju6u"]
+[ext_resource type="AudioStream" uid="uid://k1e2bkfvjbef" path="res://scenes/entities/enemy/rammer/RammerSoundRandomiser.tres" id="2_nasbk"]
 [ext_resource type="AudioStream" uid="uid://hebaurdsbilv" path="res://assets/sounds/entities/Enemy/sx_ch_bonustrash_horn.wav" id="2_xw88a"]
 [ext_resource type="Script" uid="uid://dyw2kaedstcm3" path="res://scripts/gameplay/abilities/flee/flee_ability.gd" id="3_2m1kf"]
 [ext_resource type="Script" uid="uid://dqfu66lggac2x" path="res://scripts/gameplay/abilities/ram/ram_ability.gd" id="4_xw88a"]
@@ -53,6 +54,7 @@ radius = 12.0415945
 [node name="Rammer" type="RigidBody2D" unique_id=2645434 node_paths=PackedStringArray("entity_sprite", "collider", "impact_zone", "perception_zone", "damage_zone")]
 linear_damp = 1.0
 script = ExtResource("1_k3n7j")
+ramming_impact_sounds = ExtResource("2_nasbk")
 entity_sprite = NodePath("Sprite2D")
 collider = NodePath("CollisionShape2D")
 spawn_sound = ExtResource("2_xw88a")
@@ -99,3 +101,7 @@ shape = SubResource("CapsuleShape2D_2m1kf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone" unique_id=663983798]
 position = Vector2(59, 0)
 shape = SubResource("CircleShape2D_2m1kf")
+
+[node name="ImpactSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1269003050]
+stream = ExtResource("2_nasbk")
+volume_db = 8.0

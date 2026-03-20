@@ -9,7 +9,7 @@ const CURRENT_A_FREQUENCY := 0.2
 const CURRENT_B_FREQUENCY := 0.15
 const WAVE_SCALE := 1.0
 
-@export var current_strength: float = 1.0
+@export var current_strength: float = 10.0
 
 var _time: float = 0.0
 

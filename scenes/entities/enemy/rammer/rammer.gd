@@ -6,6 +6,8 @@ extends Enemy
 @export var ram_maximum_speed: float = 200.0
 @export var ram_damage_multiplier: int = 5
 
+@export var ramming_impact_sounds: AudioStream
+
 func _ready() -> void:
 	super._ready()
 
@@ -15,6 +17,7 @@ func _physics_process(delta: float) -> void:
 func _on_damage_zone_entered(damage_receiver: Node) -> void:
 	var damage_multiplier = _get_damage_multiplier(damage_receiver)
 	if damage_multiplier > 0:
+		$ImpactSoundPlayer.play()
 		on_apply_damage(ram_base_damage * damage_multiplier, damage_receiver)
 
 func _get_relative_speed(relative_to: Node) -> float:

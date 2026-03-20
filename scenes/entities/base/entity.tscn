@@ -2,9 +2,23 @@
 
 [ext_resource type="Script" uid="uid://cdx4j041nqp46" path="res://scenes/entities/base/entity.gd" id="1_wcjeu"]
 [ext_resource type="Script" uid="uid://dya4yka5juo01" path="res://scenes/levels/UI/health_bar_component.gd" id="2_y438u"]
+[ext_resource type="AudioStream" uid="uid://drt2foxh56qx6" path="res://scenes/entities/base/AttachSoundRandomiser.tres" id="3_kg343"]
+[ext_resource type="AudioStream" uid="uid://cus1oqbwf3bwt" path="res://scenes/entities/base/DetachSoundRandomiser.tres" id="4_7fhij"]
+[ext_resource type="AudioStream" uid="uid://c1wpu24wylc3y" path="res://assets/sounds/entities/Enemy/sx_chr_bonustrash_destroyed.wav" id="5_7fhij"]
 
 [node name="Entity" type="RigidBody2D" unique_id=464333206]
 script = ExtResource("1_wcjeu")
 
 [node name="HealthBar" type="Node2D" parent="." unique_id=1120706391]
 script = ExtResource("2_y438u")
+
+[node name="AttachedSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=793847317]
+stream = ExtResource("3_kg343")
+volume_db = 8.0
+
+[node name="DetachedSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=443793699]
+stream = ExtResource("4_7fhij")
+volume_db = 8.0
+
+[node name="DeathSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=493948138]
+stream = ExtResource("5_7fhij")

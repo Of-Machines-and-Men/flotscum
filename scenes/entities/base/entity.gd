@@ -252,6 +252,8 @@ func on_receive_damage(damage: int, _damage_dealer: Node):
 
 func _on_death():
 	DifficultyManager.notify_death(difficulty_modifier)
+	if $DeathSoundPlayer:
+		$DeathSoundPlayer.play()
 	movement_abilities.clear()
 	default_behaviour = DriftAbility.new()
 	if perception_zone:
