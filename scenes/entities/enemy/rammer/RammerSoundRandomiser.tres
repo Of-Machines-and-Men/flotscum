@@ -1,0 +1,13 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://k1e2bkfvjbef"]
+
+[ext_resource type="AudioStream" uid="uid://chioxr4f3iacu" path="res://assets/sounds/entities/Enemy/sx_chr_boat_ram_01.wav" id="1_cou7i"]
+[ext_resource type="AudioStream" uid="uid://7xqdlswrsea6" path="res://assets/sounds/entities/Enemy/sx_chr_boat_ram_02.wav" id="2_ucy8c"]
+[ext_resource type="AudioStream" uid="uid://duqkrmrd2moux" path="res://assets/sounds/entities/Enemy/sx_chr_boat_ram_03.wav" id="3_bco36"]
+
+[resource]
+random_pitch = 1.0594631
+random_volume_offset_db = 1.0
+streams_count = 3
+stream_0/stream = ExtResource("1_cou7i")
+stream_1/stream = ExtResource("2_ucy8c")
+stream_2/stream = ExtResource("3_bco36")

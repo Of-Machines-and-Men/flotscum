@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://bi7cqqcpx43c2"]
+
+[ext_resource type="AudioStream" uid="uid://dle1haps6d74s" path="res://assets/sounds/player/sx_plr_dmg_01.wav" id="1_2xe7j"]
+[ext_resource type="AudioStream" uid="uid://u2sf51emxio8" path="res://assets/sounds/player/sx_plr_dmg_02.wav" id="2_hputs"]
+
+[resource]
+random_pitch = 1.2599211
+random_volume_offset_db = 2.0
+streams_count = 2
+stream_0/stream = ExtResource("1_2xe7j")
+stream_1/stream = ExtResource("2_hputs")
