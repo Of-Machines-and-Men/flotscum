@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://nxvpjgv2wj5u"]
+
+[ext_resource type="PackedScene" uid="uid://fegfnwhatpdg" path="res://scenes/entities/collectible/structural/StructuralCollectible.tscn" id="1_kw2q7"]
+[ext_resource type="Script" uid="uid://cu4mdkcnqpes6" path="res://scenes/entities/collectible/structural/large/large_collectible.gd" id="2_irttg"]
+[ext_resource type="Script" uid="uid://d3fo5tn0n6ld" path="res://scripts/gameplay/abilities/ability.gd" id="3_oxc5b"]
+[ext_resource type="Texture2D" uid="uid://cvkyj1mfvkuou" path="res://assets/entities/trash/large/plane_tail.png" id="3_w5pyh"]
+[ext_resource type="Texture2D" uid="uid://cacsy3qyged6h" path="res://assets/entities/trash/large/SUNKEN_CAR.png" id="4_nweed"]
+[ext_resource type="Texture2D" uid="uid://13t7kb7yoml7" path="res://assets/entities/trash/large/WING.png" id="5_5bkkb"]
+
+[node name="StructuralCollectible" unique_id=262448205 instance=ExtResource("1_kw2q7")]
+script = ExtResource("2_irttg")
+sprites = Array[Texture2D]([ExtResource("3_w5pyh"), ExtResource("4_nweed"), ExtResource("5_5bkkb")])
+base_min_range = 0.0
+base_max_range = 0.0
+faction = 2
+movement_abilities = Array[ExtResource("3_oxc5b")]([])
+default_stance = 1
+motor_force = 100.0
+motor_torque = 100.0
+torque_damping = 1.0
+base_health = 10
+absorber_priority = 0
+can_be_attached = true
+can_be_reattached = false
+sink_duration = 2.0
+reattachment_delay = 1.0
+invulnerability_delay = 0.5
+decision_interval = 1.0

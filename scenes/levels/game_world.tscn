@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://bu0l7lx6otexd"]
 
 [ext_resource type="Shader" uid="uid://bi28g0yfik0rs" path="res://shaders/ocean.gdshader" id="1_7y55x"]
-[ext_resource type="Shader" path="res://shaders/pixelation.gdshader" id="1_b3nq0"]
+[ext_resource type="Shader" uid="uid://dt3nip826txs3" path="res://shaders/pixelation.gdshader" id="1_b3nq0"]
 [ext_resource type="PackedScene" uid="uid://dd3ahydw2vtl5" path="res://scenes/entities/enemy/rammer/rammer.tscn" id="2_75bvq"]
 [ext_resource type="Script" uid="uid://8u3ts410dhvl" path="res://scenes/levels/ocean_background.gd" id="2_hyc8p"]
 [ext_resource type="Script" uid="uid://c8mpy6wdtltu7" path="res://scenes/entities/spawners/spawner.gd" id="2_w0s2s"]
 [ext_resource type="Script" uid="uid://dm8mfsap6ff2q" path="res://scenes/entities/spawners/spawner_entry/spawner_entry.gd" id="4_bg1mu"]
-[ext_resource type="PackedScene" uid="uid://fegfnwhatpdg" path="res://scenes/entities/collectible/structural/StructuralCollectible.tscn" id="6_5kkkq"]
+[ext_resource type="PackedScene" uid="uid://dkb514pc2y3d2" path="res://scenes/entities/collectible/structural/small/SmallCollectible.tscn" id="6_5kkkq"]
 [ext_resource type="PackedScene" uid="uid://bx50wswt2uvmn" path="res://scenes/entities/player/player.tscn" id="6_75bvq"]
 [ext_resource type="PackedScene" uid="uid://i1s7inocv6wj" path="res://scenes/levels/UI/pause_menu.tscn" id="6_b3nq0"]
+[ext_resource type="PackedScene" uid="uid://cqf3oh57fueq2" path="res://scenes/entities/collectible/structural/medium/MediumCollectible.tscn" id="7_71qc7"]
+[ext_resource type="PackedScene" uid="uid://blrgcv1y1gem8" path="res://scenes/entities/enemy/tanker/tanker.tscn" id="9_u8n12"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cryqq"]
 shader = ExtResource("1_b3nq0")
@@ -18,7 +20,7 @@ shader_parameter/pixel_size = 4.0
 script = ExtResource("4_bg1mu")
 spawn_entity = ExtResource("2_75bvq")
 difficulty_weight = 0.1
-probability_weight = 0.3
+probability_weight = 0.1
 metadata/_custom_type_script = "uid://dm8mfsap6ff2q"
 
 [sub_resource type="Resource" id="Resource_u8n12"]
@@ -26,6 +28,20 @@ script = ExtResource("4_bg1mu")
 spawn_entity = ExtResource("6_5kkkq")
 difficulty_weight = -0.1
 probability_weight = 0.7
+metadata/_custom_type_script = "uid://dm8mfsap6ff2q"
+
+[sub_resource type="Resource" id="Resource_gb76e"]
+script = ExtResource("4_bg1mu")
+spawn_entity = ExtResource("9_u8n12")
+difficulty_weight = 0.1
+probability_weight = 0.04
+metadata/_custom_type_script = "uid://dm8mfsap6ff2q"
+
+[sub_resource type="Resource" id="Resource_pdwqa"]
+script = ExtResource("4_bg1mu")
+spawn_entity = ExtResource("7_71qc7")
+difficulty_weight = -0.1
+probability_weight = 0.3
 metadata/_custom_type_script = "uid://dm8mfsap6ff2q"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hyc8p"]
@@ -121,7 +137,7 @@ color = Color(1, 1, 1, 0)
 
 [node name="Spawner" type="Node" parent="." unique_id=8477893]
 script = ExtResource("2_w0s2s")
-spawnable_items = Array[ExtResource("4_bg1mu")]([SubResource("Resource_71qc7"), SubResource("Resource_u8n12")])
+spawnable_items = Array[ExtResource("4_bg1mu")]([SubResource("Resource_71qc7"), SubResource("Resource_u8n12"), SubResource("Resource_gb76e"), SubResource("Resource_pdwqa")])
 spawn_min_range = 500.0
 spawn_max_range = 2000.0
 max_entities = 200

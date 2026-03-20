@@ -19,7 +19,23 @@ script = ExtResource("1_3xq35")
 entity_sprite = NodePath("Sprite2D")
 collider = NodePath("Collider")
 impact_zone = NodePath("ImpactZone")
+base_min_range = null
+base_max_range = null
+faction = null
+movement_abilities = null
+default_stance = null
 default_behaviour = SubResource("Resource_24l6l")
+motor_force = null
+motor_torque = null
+torque_damping = null
+base_health = null
+absorber_priority = null
+can_be_attached = null
+can_be_reattached = null
+sink_duration = null
+reattachment_delay = null
+invulnerability_delay = null
+decision_interval = null
 metadata/_custom_type_script = "uid://cvoit73i6hn7e"
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1582658112]
