@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bjfgy0dqul657" path="res://scripts/gameplay/abilities/wander/wander_ability.gd" id="5_nasbk"]
 [ext_resource type="Texture2D" uid="uid://d2ssq57oxdi3a" path="res://assets/entities/enemies/Trawler_Option2x.png" id="6_4ju6u"]
 [ext_resource type="Shader" uid="uid://mbbv8o3qlcs1" path="res://shaders/drop_shadow.gdshader" id="6_xw88a"]
+[ext_resource type="AudioStream" uid="uid://big1c2la2d2eq" path="res://assets/sounds/entities/Enemy/sx_chr_boat_destroyed.wav" id="10_c0snj"]
 
 [sub_resource type="Resource" id="Resource_xw88a"]
 script = ExtResource("3_2m1kf")
@@ -51,13 +52,14 @@ height = 130.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_2m1kf"]
 radius = 12.0415945
 
-[node name="Rammer" type="RigidBody2D" unique_id=2645434 node_paths=PackedStringArray("entity_sprite", "collider", "impact_zone", "perception_zone", "damage_zone")]
+[node name="Rammer" type="RigidBody2D" unique_id=2645434 node_paths=PackedStringArray("entity_sprite", "collider", "death_sound_player", "impact_zone", "perception_zone", "damage_zone")]
 linear_damp = 1.0
 script = ExtResource("1_k3n7j")
 ramming_impact_sounds = ExtResource("2_nasbk")
 entity_sprite = NodePath("Sprite2D")
 collider = NodePath("CollisionShape2D")
 spawn_sound = ExtResource("2_xw88a")
+death_sound_player = NodePath("AudioStreamPlayer2D")
 impact_zone = NodePath("ImpactZone")
 perception_zone = NodePath("PerceptionArea")
 damage_zone = NodePath("DamageZone")
@@ -104,4 +106,8 @@ shape = SubResource("CircleShape2D_2m1kf")
 
 [node name="ImpactSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1269003050]
 stream = ExtResource("2_nasbk")
+volume_db = 8.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=24799420]
+stream = ExtResource("10_c0snj")
 volume_db = 8.0

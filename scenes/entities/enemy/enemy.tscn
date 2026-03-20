@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dsq8wpee482cx"]
 
 [ext_resource type="Script" uid="uid://b80r5gviyuvkm" path="res://scenes/entities/enemy/enemy.gd" id="1_lw7nh"]
+[ext_resource type="AudioStream" uid="uid://big1c2la2d2eq" path="res://assets/sounds/entities/Enemy/sx_chr_boat_destroyed.wav" id="2_1y44r"]
 
 [node name="Enemy" type="RigidBody2D" unique_id=1115726226]
 linear_damp = 1.0
@@ -8,3 +9,7 @@ script = ExtResource("1_lw7nh")
 faction = 1
 absorber_priority = 1
 metadata/_custom_type_script = "uid://cdx4j041nqp46"
+
+[node name="DeathSoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1170188481]
+stream = ExtResource("2_1y44r")
+volume_db = 8.0

@@ -32,11 +32,12 @@ height = 120.0
 radius = 45.0
 height = 130.0
 
-[node name="Player" type="RigidBody2D" unique_id=1684059445 node_paths=PackedStringArray("entity_sprite", "collider", "impact_zone")]
+[node name="Player" type="RigidBody2D" unique_id=1684059445 node_paths=PackedStringArray("entity_sprite", "collider", "death_sound_player", "impact_zone")]
 linear_damp = 1.0
 script = ExtResource("1_1hmtu")
 entity_sprite = NodePath("Sprite2D")
 collider = NodePath("CollisionShape2D")
+death_sound_player = NodePath("DeathSoundPlayer")
 impact_zone = NodePath("ImpactZone")
 faction = 0
 default_behaviour = SubResource("Resource_nh4ur")

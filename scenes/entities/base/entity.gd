@@ -4,6 +4,7 @@ extends RigidBody2D
 @export var entity_sprite: Sprite2D
 @export var collider: CollisionShape2D
 @export var spawn_sound: AudioStream
+@export var death_sound_player: AudioStreamPlayer2D
 @export var impact_zone: Area2D
 @export var perception_zone: Area2D
 @export var damage_zone: Area2D
@@ -252,8 +253,8 @@ func on_receive_damage(damage: int, _damage_dealer: Node):
 
 func _on_death():
 	DifficultyManager.notify_death(difficulty_modifier)
-	if $DeathSoundPlayer:
-		$DeathSoundPlayer.play()
+	if death_sound_player:
+		death_sound_player.play()
 	movement_abilities.clear()
 	default_behaviour = DriftAbility.new()
 	if perception_zone:
