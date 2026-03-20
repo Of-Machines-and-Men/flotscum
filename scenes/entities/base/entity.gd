@@ -17,9 +17,9 @@ extends RigidBody2D
 @export var difficulty_modifier: float = 0.0
 
 @export var motor_force: float = 100.0
-@export var motor_force_multiplier = 1.0
+@export var motor_force_multiplier: float = 1.0
 @export var motor_torque: float = 100.0
-@export var motor_torque_multiplier = 10.0
+@export var motor_torque_multiplier: float = 10.0
 @export var torque_damping: float = 1.0
 
 @export var base_health: int = 10

@@ -27,6 +27,7 @@ EntityAttachmentManager="*uid://cr8gvyh1janjf"
 FactionManager="*res://scripts/managers/faction_manager.gd"
 AmbientManager="*uid://c7vpjhcpjyq1x"
 DifficultyManager="*uid://bmjfwb0cdb8j"
+GameManager="*uid://dyovxdorugpwb"
 
 [display]
 
