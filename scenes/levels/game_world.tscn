@@ -140,4 +140,3 @@ grow_vertical = 2
 script = ExtResource("2_hyc8p")
 
 [node name="Player" parent="." unique_id=1684059445 instance=ExtResource("6_75bvq")]
-motor_torque = 5000.0

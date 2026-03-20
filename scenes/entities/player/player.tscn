@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ddo6cyibuwjad" path="res://scenes/entities/player/player.gd" id="1_1hmtu"]
 [ext_resource type="Script" uid="uid://d12eyvoswutn1" path="res://scripts/gameplay/abilities/drift/drift_ability.gd" id="2_58kc7"]
 [ext_resource type="Texture2D" uid="uid://k7k4l7f8cba6" path="res://assets/entities/Garbo.svg" id="2_635qg"]
-[ext_resource type="Shader" uid="uid://mbbv8o3qlcs1" path="res://shaders/drop_shadow.gdshader" id="3_nh4ur"]
+[ext_resource type="Shader" path="res://shaders/drop_shadow.gdshader" id="3_nh4ur"]
 [ext_resource type="AudioStream" uid="uid://jnbyvafycg54" path="res://assets/sounds/player/sx_plr_move.wav" id="5_bjvvg"]
 
 [sub_resource type="Resource" id="Resource_nh4ur"]
@@ -24,11 +24,12 @@ shader_parameter/ripple_speed = 1.2
 shader_parameter/ripple_frequency = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_58kc7"]
-radius = 45.0
-height = 150.0
+radius = 41.0
+height = 120.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_635qg"]
-radius = 46.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bjvvg"]
+radius = 45.0
+height = 130.0
 
 [node name="Player" type="RigidBody2D" unique_id=1684059445 node_paths=PackedStringArray("entity_sprite", "collider", "impact_zone")]
 linear_damp = 1.0
@@ -40,7 +41,9 @@ faction = 0
 default_behaviour = SubResource("Resource_nh4ur")
 motor_force = 250.0
 motor_torque = 500.0
+base_health = 20
 absorber_priority = 2
+can_be_attached = false
 metadata/_custom_type_script = "uid://cdx4j041nqp46"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=80675551]
@@ -56,7 +59,7 @@ shape = SubResource("CapsuleShape2D_58kc7")
 
 [node name="ImpactCollider" type="CollisionShape2D" parent="ImpactZone" unique_id=65333504]
 position = Vector2(5, 0)
-shape = SubResource("CircleShape2D_635qg")
+shape = SubResource("CapsuleShape2D_bjvvg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1279723923]
 process_callback = 0

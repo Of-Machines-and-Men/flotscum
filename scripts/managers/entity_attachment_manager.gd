@@ -49,6 +49,6 @@ func _process(_delta: float) -> void:
 		
 		if absorber_root == target_root or not (absorber_root.can_be_attached or target_root.can_be_attached):
 			return
-		request.target.on_impact(request.absorber)
+		request.target.on_attempt_attach(request.absorber)
 	_queue.clear()
 	

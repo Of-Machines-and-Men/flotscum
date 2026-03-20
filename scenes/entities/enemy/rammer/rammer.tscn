@@ -36,18 +36,27 @@ shader_parameter/ripple_speed = 1.2
 shader_parameter/ripple_frequency = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ju6u"]
-radius = 9.0
-height = 68.0
+radius = 11.000001
+height = 110.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k3n7j"]
-radius = 397.02014
+radius = 768.0
 
-[node name="Rammer" type="RigidBody2D" unique_id=2645434 node_paths=PackedStringArray("entity_sprite", "collider", "perception_zone")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2m1kf"]
+radius = 17.0
+height = 130.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2m1kf"]
+radius = 12.0415945
+
+[node name="Rammer" type="RigidBody2D" unique_id=2645434 node_paths=PackedStringArray("entity_sprite", "collider", "impact_zone", "perception_zone", "damage_zone")]
 linear_damp = 1.0
 script = ExtResource("1_k3n7j")
 entity_sprite = NodePath("Sprite2D")
 collider = NodePath("CollisionShape2D")
+impact_zone = NodePath("ImpactZone")
 perception_zone = NodePath("PerceptionArea")
+damage_zone = NodePath("DamageZone")
 base_max_range = 512.0
 faction = 1
 movement_abilities = Array[ExtResource("2_4ju6u")]([SubResource("Resource_xw88a"), SubResource("Resource_nasbk")])
@@ -66,6 +75,7 @@ texture = ExtResource("6_4ju6u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1521781837]
 visible = false
+position = Vector2(-5, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_4ju6u")
 
@@ -74,3 +84,16 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PerceptionArea" unique_id=1502097546]
 shape = SubResource("CircleShape2D_k3n7j")
+
+[node name="ImpactZone" type="Area2D" parent="." unique_id=253988551]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ImpactZone" unique_id=1503462727]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_2m1kf")
+
+[node name="DamageZone" type="Area2D" parent="." unique_id=710450768]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone" unique_id=663983798]
+position = Vector2(59, 0)
+shape = SubResource("CircleShape2D_2m1kf")
