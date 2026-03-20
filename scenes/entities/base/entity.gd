@@ -17,9 +17,9 @@ extends RigidBody2D
 @export var difficulty_modifier: float = 0.0
 
 @export var motor_force: float = 100.0
-@export var motor_force_multiplier = 1.0
+@export var motor_force_multiplier: float = 1.0
 @export var motor_torque: float = 100.0
-@export var motor_torque_multiplier = 10.0
+@export var motor_torque_multiplier: float = 10.0
 @export var torque_damping: float = 1.0
 
 @export var base_health: int = 10
@@ -34,6 +34,7 @@ extends RigidBody2D
 
 @onready var _spawn_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 
+
 var _perceived_predators: Array[Entity] = []
 var _perceived_prey: Array[Entity] = []
 
@@ -47,6 +48,8 @@ var _invulnerability_timer: float = invulnerability_delay
 var current_health: int = 10
 var is_attached: bool = false
 var ready_for_cleanup = false
+
+var health_bar = null
 
 #region attribute getters and setters
 
@@ -74,12 +77,18 @@ func _ready() -> void:
 	add_to_group("entities")
 	DifficultyManager.notify_spawn(difficulty_modifier)
 	gravity_scale = 0.0
-	#Add audio player dynamically
+	
+	#create healthbar
+	var hb = preload("res://scenes/levels/UI/health_bar_component.gd").new()
+	hb.name = "HealthBar"
+	add_child(hb)
+	health_bar	= hb
+	health_bar.setup(base_health, current_health)
 	if spawn_sound:
 		var player = AudioStreamPlayer2D.new()
-		add_child(player)  # add to tree FIRST
+		add_child(player)
 		player.stream = spawn_sound
-		player.play()  # THEN play
+		player.play()
 		player.finished.connect(player.queue_free)
 	if impact_zone:
 		impact_zone.body_entered.connect(_on_absorption_zone_overlap)
@@ -235,6 +244,8 @@ func on_receive_damage(damage: int, _damage_dealer: Node):
 	if _invulnerability_timer <= 0.0:
 		_invulnerability_timer = invulnerability_delay
 		current_health -= damage
+		if health_bar:
+			health_bar.update_health(current_health)
 		trigger_decision("received damage")
 		if current_health <= 0:
 			_on_death()
@@ -273,5 +284,7 @@ func _on_detach() -> void:
 		await get_tree().create_timer(reattachment_delay).timeout
 		can_be_attached = true
 		current_health = base_health
+		if health_bar:
+			health_bar.update_health(current_health)
 
 #endregion

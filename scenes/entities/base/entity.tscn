@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://bmbon5ltbg7hn"]
 
 [ext_resource type="Script" uid="uid://cdx4j041nqp46" path="res://scenes/entities/base/entity.gd" id="1_wcjeu"]
+[ext_resource type="Script" uid="uid://dya4yka5juo01" path="res://scenes/levels/UI/health_bar_component.gd" id="2_y438u"]
 
 [node name="Entity" type="RigidBody2D" unique_id=464333206]
 script = ExtResource("1_wcjeu")
+
+[node name="HealthBar" type="Node2D" parent="." unique_id=1120706391]
+script = ExtResource("2_y438u")

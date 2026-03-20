@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://0t3owjirnwdr"]
 
 [ext_resource type="Script" uid="uid://rqd5agenrhrh" path="res://scripts/game_over.gd" id="1_xnd6m"]
+[ext_resource type="FontFile" uid="uid://befhsw8dexkeu" path="res://assets/fonts/Barriecito-Regular.ttf" id="2_jum7q"]
+[ext_resource type="Texture2D" uid="uid://bsut4r8ad3y1l" path="res://assets/UI/buttonboard.svg" id="2_lc8n8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jum7q"]
+texture = ExtResource("2_lc8n8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f7hfo"]
+texture = ExtResource("2_lc8n8")
 
 [node name="GameOver" type="Control" unique_id=735659955]
 layout_mode = 3
@@ -16,10 +24,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.008
 anchor_right = 0.008
-offset_left = 490.784
-offset_top = 250.0
-offset_right = 582.784
-offset_bottom = 297.0
+offset_left = 803.64
+offset_top = 447.0
+offset_right = 1125.64
+offset_bottom = 642.0
 alignment = 1
 
 [node name="Game Over" type="Label" parent="VBoxContainer" unique_id=219259007]
@@ -29,8 +37,15 @@ horizontal_alignment = 1
 
 [node name="RetryButton" type="Button" parent="VBoxContainer" unique_id=1015939111]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jum7q")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jum7q")
 text = "RETRY"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer" unique_id=1194243604]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jum7q")
+theme_override_styles/normal = SubResource("StyleBoxTexture_f7hfo")
 text = "MAIN MENU"
+
+[connection signal="pressed" from="VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

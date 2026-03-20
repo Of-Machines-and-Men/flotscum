@@ -6,6 +6,10 @@ extends Entity
 func _ready() -> void:
 	super._ready()
 	add_to_group("player")
+	
+func _on_death() -> void:
+	super._on_death()  # still runs the base death logic
+	GameManager.trigger_game_over()
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
