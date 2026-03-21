@@ -81,6 +81,7 @@ func _ready() -> void:
 	hb.name = "HealthBar"
 	add_child(hb)
 	health_bar	= hb
+	current_health = base_health
 	health_bar.setup(base_health, current_health)
 	if spawn_sound:
 		var player = AudioStreamPlayer2D.new()
